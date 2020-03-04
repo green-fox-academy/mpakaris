@@ -15,7 +15,7 @@ header {
 header h1 {
     position: absolute;
     bottom: 110px; 
-    left: 100px;
+    left: 260px;
     line-height: 10px;
     font-family: 'Trade Winds', cursive;
 }
@@ -23,7 +23,7 @@ header h1 {
 header h2 {
     position: absolute;
     bottom: 5px;
-    left: 100px;
+    left: 260px;
     font-size: 4.5em;
     line-height: 10px;
     font-family: 'Trade Winds', cursive;
@@ -33,6 +33,7 @@ article {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 50px;
 }
 
 p {
@@ -47,7 +48,7 @@ ul {
 
 q, blockquote {
     color: whitesmoke; 
-    background-color: grey;
+    background-color: rgb(128,128,128, 0.4);
     font-size: 2.9em;
     display: block;
     max-width: 700px;
@@ -56,6 +57,7 @@ q, blockquote {
     text-align: center;
     padding: 50px;
     font-family: 'Lacquer', sans-serif;
+    color: rgb(83, 7, 7);
 }
 
 h2 {
@@ -64,6 +66,7 @@ h2 {
 
 h3 {
     font-size: 1.6em;
+    line-height: 40px;
 }
 
 h4 {

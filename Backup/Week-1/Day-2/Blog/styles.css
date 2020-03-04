@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+}
+
+header {
+    background-color: lightseagreen;
+    height: 75px;
+    max-width: 100vw;
+    position: relative;
+    margin-top: -25px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+header h1 {
+    max-width: 1500px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    margin: 25px auto;
+}
+
+input {
+    padding: 15px;
+}
+
+.inputTitleBox {
+    border: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    height: 15px;
+}
+
+.inputContentBox {
+    border: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    height: 75px;
+}
+
+button {
+    margin-top: 25px;
+}
+
+.submitArticle {
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.seePosts p {
+    margin-top: 5px;
+    padding: 6px;
+    width: 100%;
+    height: auto; 
+    font-size: 2em;
+   
+}
+
+.postDisplayContainer {
+    border: 1px solid black;
+    margin: 15px;
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 1500px;
+}

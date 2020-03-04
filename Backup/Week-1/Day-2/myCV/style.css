@@ -1,0 +1,80 @@
+body {
+    margin: 0px;
+    text-align: justify;
+    text-justify: inter-word;
+    font-family: 'Roboto', sans-serif;}
+
+header {
+    position: relative; 
+    width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    background-position: center;
+}
+
+header h1 {
+    position: absolute;
+    bottom: 110px; 
+    left: 260px;
+    line-height: 10px;
+    font-family: 'Trade Winds', cursive;
+}
+
+header h2 {
+    position: absolute;
+    bottom: 5px;
+    left: 260px;
+    font-size: 4.5em;
+    line-height: 10px;
+    font-family: 'Trade Winds', cursive;
+}
+
+article {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 30px;
+}
+
+ul {
+    font-size: 1.2em;
+    line-height: 30px;
+}
+
+q, blockquote {
+    color: whitesmoke; 
+    background-color: rgb(128,128,128, 0.4);
+    font-size: 2.9em;
+    display: block;
+    max-width: 700px;
+    margin: 55px auto;     
+    height: auto;
+    text-align: center;
+    padding: 50px;
+    font-family: 'Lacquer', sans-serif;
+    color: rgb(83, 7, 7);
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+h3 {
+    font-size: 1.6em;
+    line-height: 40px;
+}
+
+h4 {
+    font-size: 1em; 
+    margin-top: -15px;
+}
+
+.formalTraining {
+    border-bottom: 4px solid black;
+    
+}
