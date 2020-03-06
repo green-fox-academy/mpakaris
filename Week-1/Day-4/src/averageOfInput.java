@@ -6,19 +6,22 @@ public class averageOfInput {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Please give number 1: ");
-        int n1 = scanner.nextInt();
-        System.out.println("Please give number 2: ");
-        int n2 = scanner.nextInt();
-        System.out.println("Please give number 3: ");
-        int n3 = scanner.nextInt();
-        System.out.println("Please give number 4: ");
-        int n4 = scanner.nextInt();
-        System.out.println("Please give number 5: ");
-        int n5 = scanner.nextInt();
+        System.out.println("");
 
-        int sum=n1+n2+n3+n4+n5;
-        double average = (double) sum/5;
+        System.out.println("Please index how many numbers you want to enter: ");
+
+        int amountNumbers = scanner.nextInt();
+        int counter = 0;
+        int sum = 0;
+
+        while (counter<amountNumbers) {
+            counter++;
+            System.out.println("Please Enter number " + counter);
+            int currentNumber = scanner.nextInt();
+            sum = sum + currentNumber;
+        }
+
+        double average = (double) sum/amountNumbers;
 
         System.out.println("Sum: " + sum + ", Average: " + average);
     }
