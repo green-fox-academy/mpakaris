@@ -16,9 +16,6 @@ public class armstrongNumber {
         int c = 0;
         int a, temp;
 
-        int remainder = 10 % 10;
-        System.out.println(remainder);
-
         temp = number;
 
         while(number>0)
@@ -30,10 +27,12 @@ public class armstrongNumber {
             c = c + (a*a*a);
             System.out.println(c);
         }
-        if( temp==c )
-            System.out.println("armstrong number");
-        else
-            System.out.println("Not armstrong number");
+
+            if( temp == c )
+                System.out.println("armstrong number");
+            else
+                System.out.println("Not armstrong number");
+
 
 
 
