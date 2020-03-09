@@ -21,7 +21,7 @@ public class reverse {
         System.out.println("After: " + Arrays.toString(aj));
 
         //2nd Solution: Array to List, reverse List and then save as Array
-           
+
 
     }
 }
