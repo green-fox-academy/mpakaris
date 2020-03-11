@@ -104,7 +104,6 @@ public class productDatabase {
 
         // Which products cost more than 150? (name + price)
         System.out.println("Which products cost more than 150? Name and Price");
-
         // Info to Solve: Create a new HashMap and push Data into There!!
 
 
