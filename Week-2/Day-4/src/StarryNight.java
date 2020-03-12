@@ -4,29 +4,31 @@ import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class Checkerboard {
+public class StarryNight {
     public static void mainDraw(Graphics graphics) {
-        // Fill the canvas with a checkerboard pattern.
+        // Draw the night sky:
+        //  - The background should be black
+        //  - The stars can be small squares
+        //  - The stars should have random positions on the canvas
+        //  - The stars should have random color (some shade of grey)
 
-        int xStartUneven = 0, yStart = 0, xStartEven = 32, seize = 32;
-        graphics.setColor(new Color(0, 0, 0));
+    int squareSize = 5;
+    graphics.setColor(Color.BLACK);
+    graphics.fillRect(0, 0, WIDTH, HEIGHT);
 
-        // We go line by line through the Canvavs
-        for (int i = 0; i < 6; i++) {// Loop in y-Direction
+    int amountStars = (int) (Math.random() * 1000);
 
-            if ( i % 2 != 0) {
-                for (int j = 1; j < 6; j++) {
-                    graphics.fillRect(xStartUneven, yStart, seize, seize);
-                    xStartUneven += 64;
-                }
-            } else {
-                for (int j = 1; j < 6; j++) {
-                    graphics.fillRect(xStartEven, yStart, seize, seize);
-                    xStartEven +=64;
-                }
-            }
-            yStart += 32;
+        for (int i = 0; i < amountStars; i++) {
+            int color = (int) (Math.random() *255);
+            int x = (int) (Math.random() * WIDTH);
+            int y = (int) (Math.random() *HEIGHT);
+            graphics.setColor(new Color(color, color, color));
+            graphics.fillRect(x, y, squareSize, squareSize);
         }
+
+
+
+
     }
 
     // Don't touch the code below
