@@ -25,10 +25,6 @@ public class StarryNight {
             graphics.setColor(new Color(color, color, color));
             graphics.fillRect(x, y, squareSize, squareSize);
         }
-
-
-
-
     }
 
     // Don't touch the code below
