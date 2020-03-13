@@ -7,7 +7,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class Triangles {
     public static void mainDraw(Graphics graphics){
 
-        int length = 20; 
+        int length = 20;
         int singleHeight = HEIGHT/21;
         int xStart = 0;
         int rowWidth = WIDTH;
