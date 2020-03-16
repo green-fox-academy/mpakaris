@@ -8,35 +8,34 @@ public class SuperHexagon {
     public static void mainDraw(Graphics graphics){
 
         //We assume the length = 30;
-        int length = 20;
+        int length = 40;
         double lengthSquared = length*(Math.sqrt(3)); //mathematical formula for Height of Hexagons
-        int heightHexagon = (int) lengthSquared; // double to Integer!
+        int heightHex = (int) lengthSquared; // double to Integer!
         int x=WIDTH, y=HEIGHT;
 
-        int XstartingPoint = 50, YstartingPoint = HEIGHT/2 - 2*heightHexagon;
+        int Xstart = 50, YStart = HEIGHT/2 - 2*heightHex;
 
         for (int i = 0; i <7 ; i++) {
 
             if( i < 4) { // Draws column 1-4
-                for (int j = 0; j < (i + 4) * heightHexagon; j += heightHexagon) {
-                    int[] xCoord = {XstartingPoint, XstartingPoint + length, XstartingPoint + length + length / 2, XstartingPoint + length, XstartingPoint, XstartingPoint - length / 2};
-                    int[] yCoord = {YstartingPoint + j, YstartingPoint + j, YstartingPoint + heightHexagon / 2 + j, YstartingPoint + heightHexagon + j, YstartingPoint + heightHexagon + j, YstartingPoint + heightHexagon / 2 + j};
+                for (int j = 0; j < (i + 4) * heightHex; j += heightHex) {
+                    int[] xCoord = {Xstart, Xstart + length, Xstart + length + length / 2, Xstart + length, Xstart, Xstart - length / 2};
+                    int[] yCoord = {YStart+ j, YStart + j, YStart + heightHex / 2 + j, YStart + heightHex + j, YStart + heightHex + j, YStart + heightHex / 2 + j};
                     graphics.drawPolygon(xCoord, yCoord, 6);
                 }
-                XstartingPoint += length + length / 2;
-                YstartingPoint -= heightHexagon / 2;
+                Xstart += length + length / 2;
+                YStart -= heightHex / 2;
             } else {
                 if (i == 4) {
-
-                    YstartingPoint += heightHexagon;
+                    YStart += heightHex; // After the middle one --> shift down to start again
                 }
-                for (int k = 0; k < (10-i) * heightHexagon; k += heightHexagon) {
-                    int[] x2Coord = {XstartingPoint, XstartingPoint + length, XstartingPoint + length + length / 2, XstartingPoint + length, XstartingPoint, XstartingPoint - length / 2};
-                    int[] y2Coord = {YstartingPoint + k, YstartingPoint + k, YstartingPoint + heightHexagon / 2 + k, YstartingPoint + heightHexagon + k, YstartingPoint + heightHexagon + k, YstartingPoint + heightHexagon / 2 + k};
+                for (int k = 0; k < (10-i) * heightHex; k += heightHex) {
+                    int[] x2Coord = {Xstart, Xstart + length, Xstart + length + length / 2, Xstart + length, Xstart, Xstart - length / 2};
+                    int[] y2Coord = {YStart + k, YStart + k, YStart + heightHex / 2 + k, YStart + heightHex + k, YStart + heightHex + k, YStart + heightHex / 2 + k};
                     graphics.drawPolygon(x2Coord, y2Coord, 6);
                 }
-                XstartingPoint += length + length / 2;
-                YstartingPoint += heightHexagon / 2;
+                Xstart += length + length / 2;
+                YStart += heightHex / 2;
             }
         }
     }
