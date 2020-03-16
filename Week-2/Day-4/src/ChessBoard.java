@@ -11,20 +11,18 @@ public class ChessBoard {
         int length = WIDTH/8, height = HEIGHT/8;
         int xStart = 0, yStart = 0;
 
-
-        for (int k = 0; k < HEIGHT; k++) {
-
-            for (int i = 0; i < WIDTH; i++) {
-                graphics.setColor(Color.BLACK);
-                graphics.fillRect(xStart, yStart, length, height);
-                xStart += length*2;
+        for (int i = 0; i < HEIGHT; i++) {
+            if (i % 2 == 0) {
+                xStart = 0;
+            } else {
+                xStart = length;
             }
-            xStart = 0;
             for (int j = 0; j < WIDTH; j++) {
-                graphics.fillRect(xStart+length, yStart+length +length*k, length, length);
-                xStart += length*2;
+            graphics.setColor(Color.BLACK);
+            graphics.fillRect(xStart, yStart, length, height);
+            xStart += length*2;
             }
-            yStart = yStart+length*k;
+            yStart += height;
         }
 
 
