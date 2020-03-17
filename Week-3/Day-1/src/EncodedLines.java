@@ -15,7 +15,7 @@ public class EncodedLines {
 
         Path filepath = Paths.get("src/" + fileName);
         List<String> allLines = Files.readAllLines(filepath);
-        Control: System.out.println(allLines);
+        //Control: System.out.println(allLines);
         List<String> newLines = allLines;
         // System.out.println(allLines);
 

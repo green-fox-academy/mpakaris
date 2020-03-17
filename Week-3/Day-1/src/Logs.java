@@ -21,7 +21,6 @@ public class Logs {
         String[] logFileArray = logFileList.toArray(new String[0]);
         List<String> AddressesIP = new ArrayList<>();
         for (String line : logFileArray) {
-
             String[] lineComponents = line.split(" ");
             //System.out.println(Arrays.toString(lineComponents));
             if (!AddressesIP.contains(lineComponents[8])) {

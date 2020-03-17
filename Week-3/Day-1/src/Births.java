@@ -18,7 +18,6 @@ public class Births {
         // If you pass "births.csv" to your function, then the result should be either 2006, or 2016.
 
         findsBirthDays("birthFile");
-
     }
 
     public static void findsBirthDays(String fileNameCSV) throws IOException {
