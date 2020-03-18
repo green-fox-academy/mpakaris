@@ -61,6 +61,7 @@ public class DiceSet {
         for (int i = 0; i < 6; i++) {
             while (diceSet2.getCurrent(i) != 6) {
                 diceSet2.reroll(i);
+                System.out.println(diceSet2.getCurrent());
             }
         }
 

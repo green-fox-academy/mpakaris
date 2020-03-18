@@ -6,6 +6,7 @@ public class Thing {
     boolean markedAsDone;
 
     public Thing(String thing){ // Creates the "Things"
+
         this.name = thing;
     }
 
