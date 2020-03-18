@@ -4,23 +4,34 @@ public class Pirates {
 
     public int counterOfRum = 0;
     public String nameOfPirate;
-    public boolean alivePirate = true; // when FALSE then Pirate dead
+    public boolean alivePirate = true;
+    public boolean captain = false; // when FALSE then Pirate dead
 
-    public Pirates(String nameOfPirateMain){
-
+    // Constructor for Pirates that are also Captains
+    public Pirates(String nameOfPirateMain, boolean captainMain){
         this.nameOfPirate = nameOfPirateMain;
+        this.captain = captainMain;
+    }
 
+    // Constructor for Pirates that are Crew/ noCaptains
+    public Pirates(String nameOfPirateMain){
+        this.nameOfPirate = nameOfPirateMain;
     }
 
     public void drinkSomeRum(){
-
         if (alivePirate) {
             counterOfRum++;
-            System.out.println(nameOfPirate + " had already " + counterOfRum + " bottles of Rum.");
-            System.out.println();
+            // System.out.println(nameOfPirate + " had already " + counterOfRum + " bottles of Rum.");
+            //System.out.println();
         } else {
             System.out.println("Sorry, " + nameOfPirate + " is dead and doesnt drink.");
             System.out.println();
+        }
+    }
+
+    public void drinkSomeRum(int amountOfRum){
+        for (int i = 0; i < amountOfRum; i++) {
+            drinkSomeRum();
         }
     }
 
@@ -70,14 +81,5 @@ public class Pirates {
                 System.out.println("Both passed out!");
             }
         }
-
-
-
-
-
-
-
-
     }
-
 }

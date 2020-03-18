@@ -2,11 +2,34 @@ package Packages;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println();
 
-    Pirates pirate1 = new Pirates("Raphael BlackBeard");
-    Pirates pirate2 = new Pirates("Niko RedBeard");
+        Pirates pirate1 = new Pirates("Captain Raphael BlackBeard", true);
+        Pirates pirate2 = new Pirates("Captain Niko RedBeard", true);
+        Ship flyingDutchman = new Ship("Flying Dutchman");
+        Ship blackPearl = new Ship("The Black Pearl");
 
-        // call 1st function
+        System.out.println("Ship 1: ");
+        System.out.println("---------------------------------------------");
+        flyingDutchman.fillship(pirate1);
+        flyingDutchman.informAboutShip();
+
+        System.out.println("Ship 2: ");
+        System.out.println("---------------------------------------------");
+        blackPearl.fillship(pirate2);
+        blackPearl.informAboutShip();
+
+        // War-App starts from Here:
+        System.out.println("Let the Battle begin!");
+        System.out.println("---------------------------------------------");
+
+        flyingDutchman.battle(blackPearl);
+
+        System.out.println("---------------------------------------------");
+        flyingDutchman.informAboutShip();
+        blackPearl.informAboutShip();
+
+    /*  // call 1st function
         for (int i = 0; i < 3; i++) {
             pirate1.drinkSomeRum();
         }
@@ -28,7 +51,7 @@ public class Main {
 
         System.out.println("Give the Pirates some Rum: ");
         pirate1.drinkSomeRum();
-        pirate2.drinkSomeRum();
+        pirate2.drinkSomeRum(); */
 
 
     }

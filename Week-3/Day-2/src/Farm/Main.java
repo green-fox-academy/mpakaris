@@ -19,13 +19,13 @@ public class Main {
 
         Animal pig = new Animal ("Pig");
         farm.breed(pig);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 90; i++) {
             pig.eat();
         }
 
         Animal cow = new Animal ("Cow");
         farm.breed(cow);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 30; i++) {
             cow.eat();
         }
 

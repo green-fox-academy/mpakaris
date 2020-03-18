@@ -11,6 +11,7 @@ public class Farm {
     ArrayList<Animal> nikosFarm = new ArrayList<>();
 
     public Farm(String farmNameMain){
+
         this.farmName = farmNameMain;
     }
 
@@ -30,11 +31,10 @@ public class Farm {
 
     public void slaughter(){
 
-        int hungerMin = 100;
+        int hungerMin = 1000;
         Animal toBeRemoved = null;
 
         for (Animal line : nikosFarm) {
-
             if (line.hunger < hungerMin) {
                 hungerMin = line.hunger;
                 toBeRemoved = line;
@@ -44,13 +44,10 @@ public class Farm {
         nikosFarm.remove(toBeRemoved);
 
         System.out.println();
-        System.out.println("The " + toBeRemoved.animalName + " was slaughtered. Cause it wasnt hungry enough.");
+        System.out.println("The " + toBeRemoved.animalName + " was slaughtered. Cause it wasn't hungry enough.");
+        for (Animal line : nikosFarm) {
+            System.out.println(line.animalName);
+        }
     }
-
-
-
-
-
-
 
 }
