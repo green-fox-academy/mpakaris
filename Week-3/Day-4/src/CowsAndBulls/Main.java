@@ -5,27 +5,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
+        System.out.println();
+        System.out.println("-----------------------------");
         CowsAndBulls newGame = new CowsAndBulls();
 
-        // Generate String --> Random Number
-        newGame.generateRandomNumber();
-
-        // WelcomeMessage for Gamer:
         newGame.welcomeGamer();
-
-        // ask for GameStatus:
-        while (newGame.getGameStatus()) {
-            //Ask for Input from User:
-
-            newGame.readInputfromUser();
-
+        while(newGame.anotherGame) {
+            newGame.setGuesses();
+            System.out.println();
+            newGame.generateRandomNumber();
+            while (newGame.getGameStatus()) {
+                newGame.readInputfromUser();
+            }
+            newGame.askForAnotherGame();
         }
-
-
-
-
-
-
+        newGame.
     }
 }

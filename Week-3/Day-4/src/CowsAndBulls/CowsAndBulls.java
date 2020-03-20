@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CowsAndBulls<Stringbuilder> {
+    private int counter = 1;
+    private int maxCredit;
+    private boolean alive = true;
+    public boolean anotherGame = true;
+    private Scanner scanner = new Scanner(System.in);
+    private ArrayList<String> recordOfGame = new ArrayList<>();
+    private StringBuilder guessedNumber = new StringBuilder();
+    private StringBuilder numberToGuessStringified = new StringBuilder();
 
-    public int counter = 1;
-    public boolean alive = true;
-    public Scanner scanner = new Scanner(System.in);
-
-    //public Stringbuilder guessedNumberUser = "";
-    public ArrayList<String> recordOfGame = new ArrayList<>();
-    public StringBuilder guessedNumber = new StringBuilder();
-    public StringBuilder numberToGuessStringified = new StringBuilder();
-
-    public CowsAndBulls(){
-    }
+    public CowsAndBulls(){}
 
     public boolean getGameStatus(){
         return this.alive;
@@ -25,7 +23,13 @@ public class CowsAndBulls<Stringbuilder> {
     public void welcomeGamer(){
         System.out.println("Welcome to <Cows&Bulls> by MPAK-entertainment!");
         System.out.println("The goal is, to guess a randomly generated 4-Digit Number");
-        System.out.println("You have 10 guesses! Good luck...");
+
+    }
+
+    public void setGuesses(){
+        System.out.println("How many times do you want to try to guess?");
+        this.maxCredit = scanner.nextInt();
+        System.out.println(this.maxCredit + " times you shall guess!");
         System.out.println();
     }
 
@@ -39,18 +43,15 @@ public class CowsAndBulls<Stringbuilder> {
         }
         System.out.println("A random number was generated!");
         System.out.println();
-        // Record generated Number in Array "recordOfGame":
-        String randomNumberString = Integer.toString(numberToGuess);
     }
 
-    public void recordRandomNumber(String randomGeneratedNumber){
+    private void recordRandomNumber(String randomGeneratedNumber){
         System.out.println("Randomly generated Number: " + randomGeneratedNumber);
     }
 
     public void readInputfromUser(){
         System.out.println("Please give a number: ");
         this.guessedNumber = new StringBuilder(scanner.nextLine());
-
         while (this.guessedNumber.length() > 4 || this.guessedNumber.length() < 4) {
             System.out.println("The number must have exactly 4 Digits! Please guess again: ");
             this.guessedNumber = new StringBuilder(scanner.nextLine());
@@ -61,30 +62,31 @@ public class CowsAndBulls<Stringbuilder> {
         evaluationOfGuessedNumber();
     }
 
-    public void recordGuessedNumbers(StringBuilder userGuessedNumber){
+    private void recordGuessedNumbers(StringBuilder userGuessedNumber){
         String lineSeparator = "----------------------------";
         this.recordOfGame.add(lineSeparator);
-
         // Save guess in ArrayList:
         String saveInArrayList = "Guess " + (this.counter) + ": " + userGuessedNumber;
         this.recordOfGame.add(saveInArrayList);
-
     }
 
-    public void increaseCounter(){
+    private void increaseCounter(){
         this.counter++;
-        if (this.counter > 5) {
+        // Loosing condition:
+        if (this.counter > this.maxCredit) {
             this.alive = false;
             recordRandomNumber(this.numberToGuessStringified.toString());
             System.out.println("You lost!");
         }
     }
 
-    public void evaluationOfGuessedNumber(){
+    private void evaluationOfGuessedNumber(){
         int counterCows = 0;
         int counterBulls = 0;
+        // Use tempVariable, otherwise we overwrite each round the original Number
         StringBuilder tempNumberToGuess = new StringBuilder(this.numberToGuessStringified);
         StringBuilder tempGuessedNumber = new StringBuilder(this.guessedNumber);
+        // Step 1: Look for Cows and replace charater, otherwise we count double
         for (int i = 0; i < 4; i++) {
             int str1_ch = (int)tempNumberToGuess.charAt(i);
             int str2_ch = (int)tempGuessedNumber.charAt(i);
@@ -94,7 +96,7 @@ public class CowsAndBulls<Stringbuilder> {
                 counterCows++;
             }
         }
-        // Step 2: Look for Bulls an replace character, otherwise we count double!
+        // Step 2: Look for Bulls and replace character, otherwise we count double!
         for (int i = 0; i <4 ; i++) {
             int str2_ch = (int)tempNumberToGuess.charAt(i);
             for (int j = 0; j < 4; j++) {
@@ -105,28 +107,37 @@ public class CowsAndBulls<Stringbuilder> {
                 }
             }
         }
-
+        // Print the efforts of the User:
         String evaluationOfGuessedNumber = "Cows: " + counterCows + " | Bulls: " + counterBulls;
         this.recordOfGame.add(evaluationOfGuessedNumber);
         for (String line : this.recordOfGame) {
             System.out.println(line);
         }
         System.out.println("----------------------------");
-
+        // Winning Strike:
         if (counterCows == 4) {
             declareWinner();
         }
-
         // increase Counter after guess:
         increaseCounter();
-
     }
 
-    public void declareWinner(){
+    private void declareWinner(){
         this.alive = false;
         recordRandomNumber(this.numberToGuessStringified.toString());
         System.out.println("Congratulations! You found the right Number.");
     }
 
-
+    public void askForAnotherGame(){
+        System.out.println();
+        System.out.println("Do you want to play again? 'Y' for Yes and 'N' for No");
+        String anotherGame = scanner.nextLine();
+        if (anotherGame.equals("N")){
+             this.anotherGame = false;
+            System.out.println("See you soon!");
+            System.out.println();
+        } else{
+            this.alive = true;
+        }
+    }
 }
