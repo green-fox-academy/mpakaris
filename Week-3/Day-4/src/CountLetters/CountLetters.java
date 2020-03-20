@@ -30,7 +30,7 @@ public class CountLetters {
         //Check with Printing if HashMap is ok:
         System.out.println("HashMap");
         for (Map.Entry<Character, Integer> item : charactersInString.entrySet()) {
-            System.out.println("Key : " + item.getKey() + " Value: " + item.getValue());
+            System.out.println("Key : " + item.getKey() + " / Value: " + item.getValue());
         }
         return charactersInString;
     }
