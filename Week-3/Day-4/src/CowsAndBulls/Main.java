@@ -19,6 +19,5 @@ public class Main {
             }
             newGame.askForAnotherGame();
         }
-        newGame.
     }
 }

@@ -5,16 +5,18 @@ import java.util.List;
 
 // Check out the folder. There's a work file and a test file.
 
-//  -  Run the tests, all 10 should be green (passing).
-//  -  The implementations though are not quite good.
-//  -  Create tests that'll fail, and will show how the implementations are wrong(You can assume that the implementation of join and split are good)
-//  -  After creating the tests, fix the implementations
-//  -  Check again, if you can create failing tests
-//  -  Implement if needed
+// Run the tests, all 10 should be green (passing).
+// The implementations though are not quite good.
+// Create tests that'll fail, and will show how the implementations are wrong(You can assume that the implementation of join and split are good)
+// After creating the tests, fix the implementations
+// Check again, if you can create failing tests
+// Implement if needed
 
 public class Extension {
+
     int add(int a, int b) {
-        return 5;
+
+        return a + b;
     }
 
     int maxOfThree(int a, int b, int c) {
@@ -25,10 +27,12 @@ public class Extension {
     }
 
     int median(List<Integer> pool) {
+
         return pool.get((pool.size()-1)/2);
     }
 
     boolean isVowel(char c) {
+
         return Arrays.asList('a', 'u', 'o', 'e', 'i').contains(c);
     }
 

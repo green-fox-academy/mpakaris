@@ -23,7 +23,6 @@ public class CowsAndBulls<Stringbuilder> {
     public void welcomeGamer(){
         System.out.println("Welcome to <Cows&Bulls> by MPAK-entertainment!");
         System.out.println("The goal is, to guess a randomly generated 4-Digit Number");
-
     }
 
     public void setGuesses(){
