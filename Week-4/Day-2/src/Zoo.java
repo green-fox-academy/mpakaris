@@ -25,7 +25,10 @@ public class Zoo {
         System.out.println("A " + reptile.getName() + " has " + reptile.setNumberOfLegs() + " legs.");
         System.out.println("A " + mammal.getName() + " has " + mammal.setNumberOfLegs() + " legs.");
         System.out.println("A " + bird.getName() + " has " + bird.setNumberOfLegs() + " legs.");
-
-
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("Flyable Exercise Add-On:");
+        bird.takeOff();
+        bird.land();
+        bird.fly();
     }
 }

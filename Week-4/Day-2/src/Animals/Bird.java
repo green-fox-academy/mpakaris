@@ -1,6 +1,8 @@
 package Animals;
 
-public class Bird extends Animal{
+import Flyable.Flyable;
+
+public class Bird extends Animal implements Flyable {
 
     protected String name;
 
@@ -41,5 +43,20 @@ public class Bird extends Animal{
     @Override
     public String color() {
         return " a wide variaty of any possible color.";
+    }
+
+    @Override
+    public void land() {
+        System.out.println("The bird lands smooth and soft");
+    }
+
+    @Override
+    public void fly() {
+        System.out.println("The birds loves to fly high.");
+    }
+
+    @Override
+    public void takeOff() {
+        System.out.println("The bird can take-off in an instant.");
     }
 }
