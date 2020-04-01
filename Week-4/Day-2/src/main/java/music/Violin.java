@@ -7,7 +7,7 @@ public class Violin extends StringedInstruments {
         super("Violin", 4, "Screech");
     }
 
-    public String getName(){
+    public String getName() {
         return "Violin";
     }
 }

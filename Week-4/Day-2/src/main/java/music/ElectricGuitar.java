@@ -12,8 +12,6 @@ public class ElectricGuitar extends StringedInstruments {
     }
 
     public String getName(){
-          return "Electrical Guitar";
+        return "Electrical Guitar";
     }
-
-
 }

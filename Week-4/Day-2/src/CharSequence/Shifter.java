@@ -18,21 +18,25 @@ public class Shifter implements CharSequence {
 
     @Override
     public char charAt(int index) {
+
         return this.string.charAt(index);
     }
 
     @Override
     public CharSequence subSequence(int start, int end) {
+
         return null;
     }
 
     @Override
     public IntStream chars() {
+
         return null;
     }
 
     @Override
     public IntStream codePoints() {
+
         return null;
     }
 }

@@ -4,7 +4,6 @@ import main.java.music.*;
 
 public class AppMusic {
     public static void main(String[] args) {
-
         // Test 1 Play
         // Electric Guitar, a 6-stringed instrument that goes Twang
         // Bass Guitar, a 4-stringed instrument that goes Duum-duum-duum
@@ -30,10 +29,5 @@ public class AppMusic {
         System.out.println("Test 2 Play");
         guitar2.play();
         bassGuitar2.play();
-
-
-
-
-
     }
 }

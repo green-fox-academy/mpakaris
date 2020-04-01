@@ -16,8 +16,4 @@ public abstract class Instrument {
         System.out.println(this.nameOfInstrument + ", a "
                 + this.stringOfInstrument + "-stringed instrument that goes " + this.soundOfInstrument);
     }
-
-
-
-
 }

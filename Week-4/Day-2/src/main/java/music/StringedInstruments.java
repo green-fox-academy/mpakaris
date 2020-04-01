@@ -12,8 +12,4 @@ public abstract class StringedInstruments extends Instrument{
         this.amountOfStrings = amountOfStrings;
         this.soundOfInstrument = soundOfInstrument;
     }
-
-
-
-
 }
