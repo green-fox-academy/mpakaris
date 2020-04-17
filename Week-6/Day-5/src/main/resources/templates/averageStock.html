@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nikos First WebShop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+    <div th:style="${margin}">
+        <h1>My Shop</h1>
+    </div>
+    <div th:style="${margin}">
+        <a class="btn btn-primary" href="/" role="button">Home</a>
+        <a class="btn btn-primary" href="/available" role="button">Only Available</a>
+        <a class="btn btn-primary" href="/cheapest" role="button">Cheapest First</a>
+        <a class="btn btn-primary" href="/containsNike" role="button">Contains 'Nike'</a>
+        <a class="btn btn-primary" href="/averageStock" role="button">Average Stock</a>
+        <a class="btn btn-primary" href="/mostExpensiveProduct" role="button">Most Expensive</a>
+
+    <div class="jumbotron jumbotron-fluid" th:style="${margin}">
+            <h2 th:style="${padding}">Average:</h2>
+            <h1 class="display-4" th:text="${averageStock}" th:style="${padding}"></h1>
+            <p class="lead" th:style="${padding}">items per Entry on Stock.</p>
+    </div>
+</body>
+</html>

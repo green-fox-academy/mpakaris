@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nikos First WebShop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+    <div th:style="${margin}">
+        <h1>My Shop</h1>
+    </div>
+    <div th:style="${margin}">
+        <a class="btn btn-primary" href="/" role="button">Home</a>
+        <a class="btn btn-primary" href="/available" role="button">Only Available</a>
+        <a class="btn btn-primary" href="/cheapest" role="button">Cheapest First</a>
+        <a class="btn btn-primary" href="/containsNike" role="button">Contains 'Nike'</a>
+        <a class="btn btn-primary" href="/averageStock" role="button">Average Stock</a>
+        <a class="btn btn-primary" href="/mostExpensiveProduct" role="button">Most Expensive</a>
+    </div>
+
+    <div th:style="${margin}">
+        <form action="/searchQuery" method="get" th:action="@{/searchQuery} ">
+            <input type = "text" name = "searchFor" placeholder="search for ..." autofocus>
+            <input type = "submit" value=" Search ">
+        </form>
+    </div>
+
+    <div th:style="${margin}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Quantity of Stock</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "product : ${listOfProducts}">
+                <td th:text="${product.getName()}"></td>
+                <td th:text="${product.getDescription()}"></td>
+                <td th:text="${product.getPrice()}"></td>
+                <td th:text="${product.getCurrency()}"></td>
+                <td th:text="${product.getQuantityStock()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
