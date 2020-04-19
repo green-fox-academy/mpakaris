@@ -6,24 +6,30 @@
     <title>Nikos First WebShop</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="myStyle.css"/>
 </head>
 <body>
-    <div th:style="${margin}">
-        <h1>My Shop</h1>
-    </div>
-    <div th:style="${margin}">
-        <a class="btn btn-primary" href="/" role="button">Home</a>
-        <a class="btn btn-primary" href="/available" role="button">Only Available</a>
-        <a class="btn btn-primary" href="/cheapest" role="button">Cheapest First</a>
-        <a class="btn btn-primary" href="/containsNike" role="button">Contains 'Nike'</a>
-        <a class="btn btn-primary" href="/averageStock" role="button">Average Stock</a>
-        <a class="btn btn-primary" href="/mostExpensiveProduct" role="button">Most Expensive</a>
+<div class="webShop">
 
-    <div class="jumbotron jumbotron-fluid" th:style="${margin}">
-            <h2 th:style="${padding}">Average:</h2>
-            <h1 class="display-4" th:text="${averageStock}" th:style="${padding}"></h1>
-            <p class="lead" th:style="${padding}">items per Entry on Stock.</p>
+    <header>
+        <img src="pictures/header.JPG" alt="Logo" class="responsive">
+    </header>
+
+    <div>
+        <h1><a href="/webshop">Main Shop</a></h1>
     </div>
+
+    <div class="buttons">
+        <div class="btn-group" role="group" aria-label="Basic example" th:each="button : ${buttonList}">
+            <a class="btn btn-info" th:href="${button.getHref()}" th:text="${button.getName()}" role="button"></a>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+            <h2 >Average:</h2>
+            <h1 class="display-4" th:text="${averageStock}"></h1>
+            <p class="lead">items per Entry on Stock.</p>
+    </div>
+</div>
 </body>
 </html>

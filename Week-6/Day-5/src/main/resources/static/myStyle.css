@@ -1,0 +1,64 @@
+body {
+    background-color: lightgray;
+    overflow-y: scroll;
+}
+
+.webShop {
+    background-color: white;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100vh;
+}
+
+div {
+    width: 95%;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+.buttons {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-group {
+    width: 185px;
+    padding: 4px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.jumbotron {
+    padding: 10px;
+}
+
+.textField {
+    width: 90%;
+    padding: 8px;
+}
+
+.priceField {
+    width: 71%;
+    padding: 8px;
+}
+
+.submitSearch {
+    padding: 8px;
+    width: 9%;
+}
+
+table {
+    margin-bottom: 50px;
+}
+
+
+

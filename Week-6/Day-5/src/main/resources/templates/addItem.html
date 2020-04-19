@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nikos First WebShop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+
+<body>
+<div class="webShop">
+
+    <header>
+        <img src="pictures/header.JPG" alt="Logo" class="responsive">
+    </header>
+
+    <div>
+        <h1><a href="/webshop">Main Shop</a></h1>
+    </div>
+
+    <div>
+        <h3>Add a new Item to the Web Shop:</h3>
+    </div>
+
+    <form action="/addItemToList" method="post" th:action="@{/addItemToList}">
+        <div class="form-group">
+            <label for="productName">Name of Product:</label>
+            <input name="name" type="text" class="form-control" id="productName" aria-describedby="emailHelp" placeholder="Microsoft Surface Laptop">
+        </div>
+        <div class="form-group">
+            <label for="productType">Type of Product:</label>
+            <input name="type" type="text" class="form-control" id="productType" placeholder="Electronics">
+        </div>
+        <div class="form-group">
+            <label for="productDescription">Description of Product:</label>
+            <input name="description" type="text" class="form-control" id="productDescription" placeholder="Grey, Expensive Computing Machine">
+        </div>
+        <div class="form-group">
+            <label for="productPrice">Price of Product:</label>
+            <input name="price" type="number" class="form-control" id="productPrice" placeholder="1000">
+        </div>
+        <div class="form-group">
+            <label for="productStock">Stock of Product</label>
+            <input name="stock" type="number" class="form-control" id="productStock" placeholder="50">
+        </div>
+        <div>
+            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

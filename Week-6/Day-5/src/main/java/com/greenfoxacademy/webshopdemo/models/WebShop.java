@@ -1,81 +1,170 @@
 package com.greenfoxacademy.webshopdemo.models;
 
-import javax.swing.text.html.Option;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.OptionalDouble;
+import org.springframework.util.ResourceUtils;
+import java.io.*;
+import java.nio.file.Files;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.io.FileWriter;
+
+import static java.util.stream.Collectors.*;
 
 public class WebShop {
 
     private List<Product> webShopContent;
+    private List<Double> listOfOriginalPrices;
 
-    public WebShop() {
+    public WebShop() throws Exception {
         this.webShopContent = new ArrayList<>();
         fill();
     }
 
-    public void fill() {
-        webShopContent.add(new Product("Running Shoes", "Nike running Shoes for every day sport", 10000, 5));
-        webShopContent.add(new Product("Printer", "HP Printer Nike that will print pages", 3000, 2));
-        webShopContent.add(new Product("Coca Cola", "standard Coke of 0.5 liter", 25, 0));
-        webShopContent.add( new Product("Wokin", "Chicken with fried rice and WOKIN sauce", 119, 100));
-        webShopContent.add(new Product("T-Shirt", "Blue with print of a corgi on a bike", 300, 1));
+    public void fill() throws Exception {
+        webShopContent.clear();
+        ArrayList<String[]> splitArrayOfEachLine = new ArrayList<>();
+        try {
+            File file = ResourceUtils.getFile("classpath:productList/webShopItems.csv");
+            System.out.println("File found: " + file.exists());
+            String line = new String(Files.readAllBytes(file.toPath()));
+            String[] lineCleared = line.split("\r\n");
+            for (int i = 0; i < lineCleared.length; i++) {
+                splitArrayOfEachLine.add(lineCleared[i].split(";"));
+            }
+        } catch (FileNotFoundException e) {
+            throw new Exception("File not found");
+        } catch (IOException e) {
+            throw new Exception("File could not be read");
+        }
+        for (int i = 0; i < splitArrayOfEachLine.size(); i++) {
+            webShopContent.add(new Product (splitArrayOfEachLine.get(i)[0],
+                    splitArrayOfEachLine.get(i)[1],
+                    splitArrayOfEachLine.get(i)[2],
+                    Double.parseDouble(splitArrayOfEachLine.get(i)[3]),
+                    splitArrayOfEachLine.get(i)[4],
+                    Integer.parseInt(splitArrayOfEachLine.get(i)[5])));
+        }
+        copyPrices();
+    }
+
+    public List<Product> addItemToWebShop(Product itemToAdd) throws Exception {
+        try {
+            FileWriter csvWriter = new FileWriter("C:\\Angular\\greenfox\\mpakaris\\Week-6\\Day-5\\src\\main\\resources\\productList\\webShopItems.csv", true);
+            String lineToAdd = itemToAdd.getName() + ";"
+                    + itemToAdd.getType() + ";"
+                    + itemToAdd.getDescription() + ";"
+                    + Double.toString(itemToAdd.getPrice()) + ";"
+                    + "HUF;"
+                    + Integer.toString(itemToAdd.getQuantityStock());
+            csvWriter.append(lineToAdd).append("\r\n");
+            csvWriter.flush();
+            csvWriter.close();
+            webShopContent.add(new Product(itemToAdd.getName(),
+                    itemToAdd.getType(), itemToAdd.getDescription(),
+                    itemToAdd.getPrice(), "HUF", itemToAdd.getQuantityStock()));
+        } catch (UnsupportedEncodingException e)
+        {
+            System.out.println(e.getMessage());
+        } catch (IOException e)
+        {
+            System.out.println(e.getMessage());
+        } catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return this.webShopContent;
+    }
+
+    public void copyPrices() {
+        this.listOfOriginalPrices = webShopContent
+                .stream()
+                .map(p -> Math.round(p.getPrice()*100.0)/100.0)
+                .collect(toList());
     }
 
     public List<Product> getWebShopContent() {
         return webShopContent;
     }
 
-    public void addItemToWebShop(Product itemToAdd) {
-        this.webShopContent.add(itemToAdd);
-    }
-
-    public List<Product> getAvailavleItems() {
-        return webShopContent
+    public List<Product> getAvailableItems() {
+        return this.webShopContent
                 .stream()
                 .filter(item -> item.isInStock())
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public List<Product> getCheapest() {
-        return webShopContent
+        return this.webShopContent
                 .stream()
                 .sorted(Comparator.comparing(Product::getPrice))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public List<Product> getContainsNike() {
-        return webShopContent
+        return this.webShopContent
                 .stream()
                 .filter(item -> item.getName().contains("Nike") || item.getDescription().contains("Nike"))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public OptionalDouble getAverageStock() {
-        return webShopContent
+        return this.webShopContent
                 .stream()
                 .mapToInt(item -> item.getQuantityStock())
                 .average();
     }
 
     public List<Product> getMostExpensiveItem () {
-        return webShopContent
+        return this.webShopContent
                 .stream()
                 .sorted(Comparator.comparing(Product::getPrice).reversed())
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public List<Product> getResultOfSearchQuery(String searchQuery) {
-        return webShopContent
+        return this.webShopContent
                 .stream()
-                .filter(item -> item.getName().toLowerCase().contains(searchQuery.toLowerCase()) || item.getDescription().toLowerCase().contains(searchQuery.toLowerCase()))
-                .collect(Collectors.toList());
+                .filter(item -> item.getName().toLowerCase().contains(searchQuery.toLowerCase())
+                        || item.getDescription().toLowerCase().contains(searchQuery.toLowerCase())
+                        || item.getType().toLowerCase().contains(searchQuery.toLowerCase()))
+                .collect(toList());
    }
 
+   public List<Product> changeCurrency() {
+       for (int i = 0; i < this.webShopContent.size(); i++) {
+           this.webShopContent.get(i).setPrice((int)(Math.round(this.webShopContent.get(i).getPrice()/350 * 100))/100.0);
+           this.webShopContent.get(i).setCurrency("EUR");
+       }
+       return this.webShopContent;
+   }
 
+   public List<Product> setToOriginalCurrency() {
+       for (int i = 0; i < this.webShopContent.size(); i++) {
+           this.webShopContent.get(i).setPrice(listOfOriginalPrices.get(i));
+           this.webShopContent.get(i).setCurrency("HUF");
+       }
+       return this.webShopContent;
+   }
+
+    public List<Product> getResultOfSearchQueryPrice(String price, String priceQuery) {
+        double d = Double.parseDouble(price);
+        if (priceQuery.toLowerCase().equals("exact")) {
+            return webShopContent
+                    .stream()
+                    .filter(p -> p.getPrice() == d)
+                    .collect(Collectors.toList());
+        } else if (priceQuery.toLowerCase().equals("above")) {
+            return webShopContent
+                    .stream()
+                    .filter(p -> p.getPrice() > d)
+                    .collect(Collectors.toList());
+        } else {
+            return webShopContent
+                    .stream()
+                    .filter(p -> p.getPrice() < d)
+                    .collect(Collectors.toList());
+        }
+    }
 
 
 

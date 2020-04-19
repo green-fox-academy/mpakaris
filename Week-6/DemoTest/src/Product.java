@@ -1,5 +1,3 @@
-package com.greenfoxacademy.webshopdemo.models;
-
 public class Product {
 
     private String name, description, currency, type;
