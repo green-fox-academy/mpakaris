@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nikos First WebShop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+
+<body>
+<div class="webShop">
+
+    <header>
+        <img src="pictures/header.JPG" alt="Logo" class="responsive">
+    </header>
+
+    <div>
+        <h1><a href="/webshop">Main Shop</a></h1>
+    </div>
+
+    <div class = "form-inLine-container">
+        <form class="form-inline" >
+            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Choose Item:</label>
+            <select class="custom-select my-1 mr-sm-2 textField" id="inlineFormCustomSelectPref">
+                <option selected th:each="product : ${listOfProducts}" th:text="${product.getName()}">Choose Product to delete</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary my-1">Delete Item</button>
+        </form>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Quantity of Stock</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "product : ${listOfProducts}">
+                <td th:text="${product.getName()}"></td>
+                <td th:text="${product.getType()}"></td>
+                <td th:text="${product.getDescription()}"></td>
+                <td th:text="${product.getPrice()}"></td>
+                <td th:text="${product.getCurrency()}"></td>
+                <td th:text="${product.getQuantityStock()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+</div>
+</body>
+</html>

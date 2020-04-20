@@ -2,13 +2,13 @@ package com.greenfoxacademy.webshopdemo.models;
 
 public class Product {
 
-    private String name, description, currency, type;
+    private String name, description, currency, type, picURL;
     private double price;
     private int quantityStock;
     private boolean inStock = false;
     private boolean currencyState;
 
-    public Product(String name, String type, String description, double price, String currency, int quantityStock) {
+    public Product(String name, String type, String description, double price, String currency, int quantityStock, String picURL) {
         this.name = name;
         this.description = description;
         this.type = type;
@@ -19,6 +19,7 @@ public class Product {
         if (this.quantityStock > 0) {
             this.inStock = true;
         }
+        this.picURL = picURL;
     }
 
     public boolean setCurrencyState() {
@@ -29,6 +30,14 @@ public class Product {
             this.setPrice(350);
             return false;
         }
+    }
+
+    public String getPicURL() {
+        return picURL;
+    }
+
+    public void setPicURL(String picURL) {
+        this.picURL = picURL;
     }
 
     public void setCurrencyState(boolean currencyState) {

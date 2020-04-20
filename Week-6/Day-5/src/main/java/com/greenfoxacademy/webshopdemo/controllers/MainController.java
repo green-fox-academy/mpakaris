@@ -98,10 +98,18 @@ public class MainController {
                                 @RequestParam (value = "description") String description,
                                 @RequestParam (value = "price") String price,
                                 @RequestParam (value = "stock") String stock,
+                                @RequestParam (value = "picUrl") String picURL,
                                 Model model) throws Exception {
-        webShop.addItemToWebShop(new Product(name, type, description, Double.parseDouble(price), "HUF", Integer.parseInt(stock)));
+        webShop.addItemToWebShop(new Product(name, type, description, Double.parseDouble(price), "HUF", Integer.parseInt(stock), picURL));
         model.addAttribute("listOfProducts", webShop.getWebShopContent());
         model.addAttribute("buttonList", buttonList.getListOfButtons());
         return "main";
     }
+
+    @RequestMapping (value = "/deleteItem")
+    public String deleteItemFromList(Model model) {
+        model.addAttribute("listOfProducts", webShop.getWebShopContent());
+        return "deleteItem";
+    }
 }
+ 

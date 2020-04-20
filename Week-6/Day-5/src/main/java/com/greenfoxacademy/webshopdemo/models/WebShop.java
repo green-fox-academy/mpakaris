@@ -41,7 +41,8 @@ public class WebShop {
                     splitArrayOfEachLine.get(i)[2],
                     Double.parseDouble(splitArrayOfEachLine.get(i)[3]),
                     splitArrayOfEachLine.get(i)[4],
-                    Integer.parseInt(splitArrayOfEachLine.get(i)[5])));
+                    Integer.parseInt(splitArrayOfEachLine.get(i)[5]),
+                    splitArrayOfEachLine.get(i)[6]));
         }
         copyPrices();
     }
@@ -54,13 +55,14 @@ public class WebShop {
                     + itemToAdd.getDescription() + ";"
                     + Double.toString(itemToAdd.getPrice()) + ";"
                     + "HUF;"
-                    + Integer.toString(itemToAdd.getQuantityStock());
+                    + Integer.toString(itemToAdd.getQuantityStock()) + ";"
+                    + itemToAdd.getPicURL();
             csvWriter.append(lineToAdd).append("\r\n");
             csvWriter.flush();
             csvWriter.close();
             webShopContent.add(new Product(itemToAdd.getName(),
                     itemToAdd.getType(), itemToAdd.getDescription(),
-                    itemToAdd.getPrice(), "HUF", itemToAdd.getQuantityStock()));
+                    itemToAdd.getPrice(), "HUF", itemToAdd.getQuantityStock(), itemToAdd.getPicURL()));
         } catch (UnsupportedEncodingException e)
         {
             System.out.println(e.getMessage());

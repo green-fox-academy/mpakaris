@@ -21,6 +21,7 @@ public class ButtonList {
         listOfButtons.add(new Button("Average Stock", "/averageStock"));
         listOfButtons.add(new Button("Most Expensive", "/mostExpensiveProduct"));
         listOfButtons.add(new Button("Add Item", "/addItem"));
+        listOfButtons.add(new Button("Delete Item", "/deleteItem"));
     }
 
     public List<Button> getListOfButtons() {
