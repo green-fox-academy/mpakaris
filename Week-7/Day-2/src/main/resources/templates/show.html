@@ -26,6 +26,7 @@
             <th scope="col">Index</th>
             <th scope="col">isKing</th>
             <th scope="col">Type</th>
+            <th scope="col">isFavorite</th>
         </tr>
         </thead>
         <tbody>
@@ -42,6 +43,7 @@
                 <span th:if="${account.isGood()}">Good Guy</span>
                 <span th:unless="${account.isGood()}">Baaaaad Guy</span>
             </td>
+            <td th:text="${account.isFavorite()}"></td>
         </tr>
         </tbody>
     </table>
@@ -73,6 +75,12 @@
             </div>
             <input required name = "balance" type="number" class="form-control" placeholder="500" aria-label="Username" aria-describedby="basic-addon1">
         </div>
+
+        <div class="custom-control custom-radio">
+            <input name="isFavorite" type="radio" class="custom-control-input" id="defaultUnchecked">
+            <label class="custom-control-label" for="defaultUnchecked">is a Favorite Character</label>
+        </div>
+
         <button type="submit" class="btn btn-dark" style="padding: 6px; float: right;">Create</button>
     </form>
 </div>

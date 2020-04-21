@@ -7,12 +7,13 @@ public class BankAccount {
 
     private String name, animalType;
     private double balance;
-    private boolean isKing, isGood;
+    private boolean isKing, isGood, isFavorite;
 
-    public BankAccount(String name, double balance, String animalType) {
+    public BankAccount(String name, double balance, String animalType, boolean isFavorite) {
         this.name = name;
         this.animalType = animalType;
         this.balance = balance;
+        this.isFavorite = isFavorite;
 
         if (name.equals("Mufasa")) {
             this.isKing = true;
@@ -24,6 +25,14 @@ public class BankAccount {
         } else {
             this.isGood = true;
         }
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     public boolean isGood() {

@@ -20,12 +20,12 @@ public class MainController {
     @RequestMapping (value = "/show")
     public String show (Model model) {
         if (listOfAccounts.size() == 0) {
-            BankAccount simba = new BankAccount("Simba", 2000, "Lion");
-            BankAccount mufasa = new BankAccount("Mufasa", 20000, "Lion");
-            BankAccount zazoo = new BankAccount("Zazoo", 5000, "Tucan");
-            BankAccount skar = new BankAccount("Skar", 800, "Lion");
-            BankAccount pumba = new BankAccount("Pumba", 100, "Pumba");
-            BankAccount timon = new BankAccount("Timon", 233, "Meerkat");
+            BankAccount simba = new BankAccount("Simba", 2000, "Lion", false);
+            BankAccount mufasa = new BankAccount("Mufasa", 20000, "Lion", false);
+            BankAccount zazoo = new BankAccount("Zazoo", 5000, "Tucan", false);
+            BankAccount skar = new BankAccount("Skar", 800, "Lion", false);
+            BankAccount pumba = new BankAccount("Pumba", 100, "Pumba", true);
+            BankAccount timon = new BankAccount("Timon", 233, "Meerkat", false);
 
             listOfAccounts.add(simba);
             listOfAccounts.add(mufasa);
