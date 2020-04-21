@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank of Simba</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+
+<body>
+
+    <div>
+        <header>
+            <img src="pictures/header.JPG" alt="Logo" class="responsive">
+        </header>
+    </div>
+<br>
+<br>
+    <div style="width: 1000px">
+        <h4 th:text="${sentence}"></h4>
+    </div>
+<br>
+<div style="width: 1000px">
+    <h4 th:utext="${sentence}"></h4>
+
+
+</div>
+
+
+
+
+
+</div>
+
+</body>
+</html>

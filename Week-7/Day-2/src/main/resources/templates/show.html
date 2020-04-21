@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank of Simba</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+<body>
+
+<div>
+    <header>
+        <img src="pictures/header.JPG" alt="Logo" class="responsive">
+    </header>
+</div>
+
+<div class = table>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Animal Type</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Index</th>
+            <th scope="col">isKing</th>
+            <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each = "account : ${listOfAccounts}">
+            <td>
+                <span th:if="${account.isKing()}" th:text="${account.getName() + ' The King'}" th:style="'color: red; font-weight: 700; font-style: italic;'"></span>
+                <span th:unless="${account.isKing()}" th:text="${account.getName()}"></span>
+            </td>
+            <td th:text="${account.getAnimalType()}"></td>
+            <td th:text="${account.getBalance() + ' Zebra'}"></td>
+            <td th:text="${accountStat.index}"></td>
+            <td th:text="${account.isKing()}"></td>
+            <td>
+                <span th:if="${account.isGood()}">Good Guy</span>
+                <span th:unless="${account.isGood()}">Baaaaad Guy</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <form action="/raiseBalance" th:method="POST">
+        <button type="submit" class="btn btn-dark" style="padding: 25px; float: right;">The "Make Everyone Happy"-Button</button>
+    </form>
+</div>
+<br>
+<br>
+<div style="width: 750px; margin-left: auto; margin-left: 150px; margin-bottom: 30px; margin-top: 60px;">
+    <h4>Add User to Bank:</h4>
+    <form action="/addAccount" method="post" >
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="accountName">Name</span>
+            </div>
+            <input required name = "name" th:type="text" class="form-control" placeholder="Simba the Prince" aria-label="Username" aria-describedby="basic-addon1" autofocus>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="accountAnimal">Animal</span>
+            </div>
+            <input required name = "animalType" type="text" class="form-control" placeholder="Lion / Zebra / ..." aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="accountBalance">Balance</span>
+            </div>
+            <input required name = "balance" type="number" class="form-control" placeholder="500" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <button type="submit" class="btn btn-dark" style="padding: 6px; float: right;">Create</button>
+    </form>
+</div>
+
+<div style="width: 750px; margin-left: auto; margin-left: 150px; margin-top: 90px; margin-bottom: ">
+    <h4>Delete User from Bank:</h4>
+    <form action="/deleteAccount" method="post" >
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="accountNameDelete">Name</span>
+            </div>
+            <input required name = "name" th:type="text" class="form-control" placeholder="Simba" aria-label="Username" aria-describedby="basic-addon1" autofocus>
+        </div>
+        <button type="submit" class="btn btn-dark" style="padding: 6px; float: right;">Delete</button>
+    </form>
+</div>
+
+</body>
+</html>

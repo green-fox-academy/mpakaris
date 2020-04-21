@@ -7,22 +7,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class copyFile {
-    public static void main(String[] args) {
-        // Write a function that copies the contents of a file into another
-        // It should take the filenames as parameters
-        // It should return a boolean that shows if the copy was successful
-        System.out.println();
-        System.out.println("This program is copying the content of one file into another.");
-
-        // Dive into copyPaste-Method
-        boolean resultPositive = copyPaste();
-
-        // return from copyPaste-Method:
-        if (resultPositive)
-            System.out.println("Yey, successfully copied the file!");
-        else
-            System.out.println("nope nope nope nope. Maybe should try again!");
+    public static void main(String[] args) {         
+        
+       if (args.equals("Hello")) {
+           System.out.println("Hello {User.name}");
+       } else if (args.equals("Hi")) {
+           System.out.println("Hi {User.name");
+       }
     }
+}
 
     public static boolean copyPaste(){
         try {
