@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+<body th:style="${color}">
+
+<main style="padding-left: 10px; margin-top: 30px">
+    <h1>Useful Utilities!</h1>
+</main>
+
+<div style="margin: 10px; border: 2px solid black">
+    <a href="/main" class="btn btn-info" role="button" style="margin: 10px">Go To Main</a>
+    <a href="/colored" class="btn btn-info" role="button" style="margin: 10px">Colored Background</a>
+</div>
+
+<form action = "/email" method="post" style="margin: 10px; border: 2px solid black">
+    <input type="email" style="width: 300px" name = "email" placeholder="prename.familyname@provider.com" autofocus>
+    <input type = "submit" class="btn btn-info" role="button" style="margin: 10px" value = "Submit">
+    <div>
+        <span th:if="${correctMail}" th:text="${email + ' is valid'}" style="color: darkgreen"></span>
+        <span th:unless="${correctMail}" th:text="${email + ' is NOT valid'}" style="color: darkred"></span>
+    </div>
+</form>
+
+<form action="/encode" method="post" style="margin: 10px; padding-left:10px; border: 2px solid black" >
+    <label for="text">Gimme a Text to Encode: </label></br>
+    <input type="text" id="text" name="textToEncode"></br>
+    <label for="index">Gimme an Index to Encode the Text With: </label></br>
+    <input type="number" min="1" max="26" name="index" id="index"></br>
+    <input type = "submit" class="btn btn-info" role="button" style="margin: 10px" value = "Encode"> </br>
+    <label for="encodedText">Your encoded Text:</label>
+    <h4 id="encodedText" th:text="${encodedText}"></h4>
+</form>
+
+<form action="/decode" method="post" style="margin: 10px; padding-left:10px; border: 2px solid black">
+    <label for="textDecode">Gimme a Text to Decode: </label></br>
+    <input type="text" id="textDecode" name="textToDecode"></br>
+    <label for="indexDecode">Gimme an Index to Decode the Text With: </label></br>
+    <input type="number" min="1" max="26" name="index" id="indexDecode"></br>
+    <input type = "submit" class="btn btn-info" role="button" style="margin: 10px" value = "Decode"> </br>
+    <label for="decodedText">Your Decoded Text:</label>
+    <h4 id="decodedText" th:text="${decodedText}"></h4>
+</form>
+</body>
+</html>

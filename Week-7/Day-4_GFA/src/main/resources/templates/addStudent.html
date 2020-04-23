@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Green Fox Academy App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+<body style="width: 1200px; margin: 0 auto; text-align: center">
+
+<div style="margin: 30px; text-align: center">
+    <h1>Green Fox Academy Student Service</h1>
+</div>
+
+<div style="margin: 30px">
+    <a style="background-color: darkgreen" href="/gfa" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go to Main Page</a>
+    <a style="background-color: darkgreen" href="/gfa/list" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">List All Students</a>
+    <a style="background-color: darkgreen" href="/gfa/addStudent" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Student</a>
+    <a style="background-color: darkgreen" href="/gfa/checkStudent" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">GFA Check</a>
+</div>
+
+<div style="margin: 30px auto; border: 3px solid green; width: 800px;">
+    <form action="/gfa/save" method="post">
+        <label for="nameStudent">Enter the name of the Student</label><br>
+        <input name="name" type="text" id="nameStudent" style="width: 500px"><br>
+        <input class="btn btn-primary btn-lg active" role="button" aria-pressed="true" type="submit" value="Add new Student" style="margin: 15px; background-color:green">
+    </form>
+</div>
+
+
+
+
+
+</body>
+</html>

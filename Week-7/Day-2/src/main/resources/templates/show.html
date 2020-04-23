@@ -49,7 +49,7 @@
     </table>
     <br>
     <form action="/raiseBalance" th:method="POST">
-        <button type="submit" class="btn btn-dark" style="padding: 25px; float: right;">The "Make Everyone Happy"-Button</button>
+        <button onclick="makeEveryOneHappy()" type="submit" class="btn btn-dark" style="padding: 25px; float: right;">The "Make Everyone Happy"-Button</button>
     </form>
 </div>
 <br>
@@ -78,10 +78,12 @@
 
         <div class="custom-control custom-radio">
             <input name="isFavorite" type="radio" class="custom-control-input" id="defaultUnchecked">
-            <label class="custom-control-label" for="defaultUnchecked">is a Favorite Character</label>
+            <label class="custom-control-label" for="defaultUnchecked">is a Favorite Character</label> <br>
+            <input name="isNotFavorite" type="radio" class="custom-control-input" id="defaultChecked">
+            <label class="custom-control-label" for="defaultChecked">is Not a Favorite Character</label>
         </div>
 
-        <button type="submit" class="btn btn-dark" style="padding: 6px; float: right;">Create</button>
+        <button type="submit" onclick="successFullAdd()" class="btn btn-dark" style="padding: 6px; float: right;">Create</button>
     </form>
 </div>
 
@@ -94,9 +96,67 @@
             </div>
             <input required name = "name" th:type="text" class="form-control" placeholder="Simba" aria-label="Username" aria-describedby="basic-addon1" autofocus>
         </div>
-        <button type="submit" class="btn btn-dark" style="padding: 6px; float: right;">Delete</button>
+        <button type="submit" class="btn btn-dark" style="padding: 6px; float: right;" id="myBtn">Delete</button>
     </form>
 </div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <!--<span class="close">&times;</span> -->
+        <p>Successfully Deleted User!</p>
+    </div>
+
+</div>
+
+
+<script>
+
+    function makeEveryOneHappy() {
+        alert("Everyone got Happy!");
+    }
+
+    function successFullAdd (name) {
+        alert("User successfully added to DataBase.");
+    }
+
+    function successDelete() {
+        alert("User successfully deleted from DataBase.");
+    }
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+</script>
+
+
+
 
 </body>
 </html>

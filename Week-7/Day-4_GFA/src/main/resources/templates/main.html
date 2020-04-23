@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Green Fox Academy App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+<body style="width: 1200px; margin: 0 auto; text-align: center">
+
+<div style="margin: 30px">
+    <h1>Green Fox Academy Student Service</h1>
+</div>
+
+<div>
+    <h3>Currently enrolled Students: <span class="badge badge-secondary" th:text="${enrolledStudents}"></span></h3>
+</div>
+
+<div style="margin: 30px">
+    <a style="background-color: darkgreen" href="/gfa" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Go to Main Page</a>
+    <a style="background-color: darkgreen" href="/gfa/list" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">List All Students</a>
+    <a style="background-color: darkgreen" href="/gfa/addStudent" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Student</a>
+    <a style="background-color: darkgreen" href="/gfa/checkStudent" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">GFA Check</a>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>
