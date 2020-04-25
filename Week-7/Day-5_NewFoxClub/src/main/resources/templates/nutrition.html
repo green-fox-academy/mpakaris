@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Green Fox Club</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+<body>
+
+<div style="text-align: center; width: 1200px; margin: 0 auto">
+    <img style="max-width: 100%; height: auto" src="header.JPG" alt="picture of Logo" class="responsive">
+</div>
+
+<header style="text-align: center; width: 1200px; margin: 0 auto">
+    <h1 th:text="'Welcome to the Nutrition Store for ' + ${fox.getName()}"></h1>
+    <h2>This is an Overview of your Foxes Diet Possibilities.</h2>
+</header>
+
+<div style="text-align: center; width: 200px; margin: 0 auto">
+    <img src="greenfox.png" alt="picture of Logo" class="responsive">
+</div>
+
+<div class="container" style="width: 1200px; margin: 0 auto; align-items: center">
+    <h3>Change the Food of your Fox:</h3>
+    <div class="row">
+        <form class="col-sm" th:action="${'/nutrition?newFood=' + item.getName() + '&name=' + fox.getName()}" method="post" th:each="item:${foodList}">
+                <div class="card" style="width: 280px; margin: 10px auto;">
+                    <input type="image" class="card-img-top" style="height: 175px" th:src="${item.getSrcImg()}">
+                    <div class="card-body">
+                        <h3 th:text="${item.getName()}"></h3>
+                        <input type="hidden" th:id="${item.getName()}" th:value="${item.getName()}" th:name="${'newItem'}">
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+<div class="container" style="width: 1200px; margin: 60px auto; align-items: center">
+    <h3>Change the Beverage of your Fox:</h3>
+    <div class="row">
+        <form class="col-sm" th:action="${'/nutrition?newDrink=' + item.getName() + '&name=' + fox.getName()}" method="post" th:each="item:${drinksList}">
+            <div class="card" style="width: 280px; margin: 10px auto;">
+                <input type="image" class="card-img-top" style="height: 175px" th:src="${item.getSrcImg()}">
+                <div class="card-body">
+                    <h3 th:text="${item.getName()}"></h3>
+                    <input type="hidden" th:id="${item.getName()}" th:value="${item.getName()}" th:name="${'newItem'}">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<main style="width: 1000px; font-size: 20px; margin: 30px auto; display: flex">
+    <a th:href="'/info?name=' + ${fox.getName()}" class="btn btn-info" role="button" style="width: 25%; height: auto; padding: 30px; margin: 6px; background-color: darkgreen; font-size: 25px;">Info</a>
+    <a th:href="'/food?name=' + ${fox.getName()}" class="btn btn-info" role="button" style="width: 25%; height: auto; padding: 30px; margin: 6px; background-color: darkgreen; font-size: 25px;">Change Food</a>
+    <a th:href="'/drink?name=' + ${fox.getName()}" class="btn btn-info" role="button" style="width: 25%; height: auto; padding: 30px; margin: 6px; background-color: darkgreen; font-size: 25px;">Change Drink</a>
+    <a th:href="'/train?name=' + ${fox.getName()}" class="btn btn-info" role="button" style="width: 25%; height: auto;padding: 30px; margin: 6px; background-color: darkgreen; font-size: 25px;">Train the Fox</a>
+</main>
+
+</body>
+</html>

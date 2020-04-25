@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Green Fox Club</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+<body>
+
+<div style="text-align: center; width: 1200px; margin: 0 auto">
+    <img style="max-width: 100%; height: auto" src="header.JPG" alt="picture of Logo" class="responsive">
+</div>
+
+<header style="text-align: center; width: 1200px; margin: 0 auto">
+    <h1>Create a new Fox</h1>
+    <h2>Please enter a Name for Your Pet</h2>
+</header>
+
+<div style="text-align: center; width: 200px; margin: 0 auto">
+    <img src="greenfox.png" alt="picture of Logo" class="responsive">
+</div>
+
+<div style=" width: 900px; margin: 0 auto;">
+    <form action="/createFox" method="post">
+        <input type="text" name="nameOfFox" id="nameOfFox" placeholder="Name your Fox" autofocus
+                                                                style="width: 600px; font-size: 30px; padding: 30px;">
+        <input type="submit" class="btn btn-info" role="button" value="Create my Fox"
+               style="margin-left: 20px; margin-top: -15px; background-color: darkgreen;
+                     padding: 35px; font-size: 30px; position: center">
+    </form>
+</div>
+
+
+
+</body>
+</html>

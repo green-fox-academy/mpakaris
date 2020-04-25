@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fox Club</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+<body style="width: 1200px; margin: 0 auto;">
+
+<header style="text-align: center">
+    <img src="images/header.JPG" alt="Logo" style="width: 100%; height: auto">
+    <h1 th:text="'This is ' + ${nameFox}"></h1>
+</header>
+
+<main style="width: 1200px; margin: 20px auto; text-align: center">
+    <img src="images/greenfox.png" alt="picture of a Green Fox">
+    <br><br>
+    <h4 th:text="${nameFox} + ' lives currently on Onion Rings and Whiskey. He bearly knows Tricks.'"></h4>
+    <h3>Let's change that! Enjoy playing.</h3>
+</main>
+<br>
+<main style="width: 900px; margin: 20px auto;">
+    <h2>Known Tricks:</h2>
+    <h4 th:if="${tricksFox} == 'empty'" th:text="'You know no Tricks, yet. Go and learn some, boy!'"></h4>
+    <ul th:unless="${tricksFox} == 'empty'" style="margin: 0 auto" th:each="trick: ${tricksFox}">
+        <li th:text="${trick}"></li>
+    </ul>
+</main>
+<br>
+<div style="width: auto; margin: 0 auto; text-align: center">
+    <a style="padding: 20px;" class="btn btn-success" th:href="'/?name=' + ${nameFox}" type="button">Information</a>
+    <a style="padding: 20px;" class="btn btn-success" th:href="'/nutritionStore/?name=' + ${nameFox}" type="button">Nutrition Store</a>
+    <a style="padding: 20px;" class="btn btn-success" th:href="'/actionStore/?name=' + ${nameFox}" type="button">Action Store</a>
+    <a style="padding: 20px;" class="btn btn-success" th:href="'/login'" type="button">Back to Login</a>
+
+</div>
+
+</body>
+</html>

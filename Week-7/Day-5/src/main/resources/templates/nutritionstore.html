@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fox Club</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="myStyle.css"/>
+</head>
+<body style="width: 1200px; margin: 0 auto;">
+
+<header style="text-align: center">
+    <h1>Nutrition Store</h1>
+    <hr class="solid" style="border: 3px solid darkgreen">
+    <h2 th:text="'of ' + ${nameFox}"></h2>
+</header>
+<br>
+<br>
+<div style="text-align: center">
+    <h3 th:if="${currentFood} != null" th:text="'The Fox currently eats: ' + ${currentFood} + ' and drinks: ' + ${currentDrink}"></h3>
+</div>
+<br>
+<br>
+<div style="display: flex; width: 1000px; margin: 0 auto;">
+    <div style="margin: 0 auto;">
+        <form th:action="${'/changeFood'}" method="post">
+            <h3>Change Fooditem:</h3> <br>
+            <select id="foodList" name="foodItemSelected">
+                <option th:each="item : ${foodList}" th:value="${item}" th:text="${item}" ></option>
+            </select>
+            <input type="submit" value="Change Food">
+        </form>
+    </div>
+    <div style="margin: 0 auto">
+        <form th:action="${'/changeDrink'}" method="post">
+            <h3>Change Fooditem:</h3> <br>
+            <select id="drinkList" name="drinkItemSelected">
+                <option th:each="item : ${drinkList}" th:value="${item}" th:text="${item}" ></option>
+            </select>
+            <input type="submit" value="Change Food">
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div style="width: auto; margin: 0 auto; text-align: center">
+    <a style="padding: 20px;" class="btn btn-success" th:href="'/?name=' + ${nameFox}" type="button">Information</a>
+    <a style="padding: 20px;" class="btn btn-success" th:href="'/nutritionStore/?name=' + ${nameFox}" type="button">Nutrition Store</a>
+    <a style="padding: 20px;" class="btn btn-success" th:href="'/actionStore/?name=' + ${nameFox}" type="button">Action Store</a>
+    <a style="padding: 20px;" class="btn btn-success" th:href="'/login'" type="button">Back to Login</a>
+</div>
+
+</body>
+</html>

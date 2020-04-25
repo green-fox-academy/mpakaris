@@ -10,24 +10,29 @@ import java.util.List;
 public class FoxService {
 
     private List<Fox> listOfFoxes;
+    private Fox fox;
 
     public void addStartingFox() {
        if (listOfFoxes == null) {
            this.listOfFoxes = new ArrayList<>();
-           listOfFoxes.add(new Fox("DummyFox"));
+           listOfFoxes.add(new Fox("Dummy"));
        }
     }
 
-    public String logIn(String foxName) {
+    public Fox logIn(String foxName) {
         String answer = "";
+        Fox selectFox = null;
         for (int i = 0; i < listOfFoxes.size(); i++) {
             if (listOfFoxes.get(i).getName().equals(foxName)) {
-                answer = "alreadyExists";
+                selectFox = listOfFoxes.get(i);
+                break;
             } else {
-                listOfFoxes.add(new Fox(foxName));
-                answer =  "createdNewFox";
+                selectFox = new Fox(foxName);
+                listOfFoxes.add(selectFox);
+                answer =  "noExist";
+                break;
             }
         }
-        return answer;
+        return selectFox;
    }
 }

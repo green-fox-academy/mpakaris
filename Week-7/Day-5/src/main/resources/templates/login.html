@@ -18,16 +18,18 @@
 <main style="width: 1200px; margin: 20px auto; text-align: center">
     <h3>Please provide a name, so you can assign it to your new Pet!</h3>
 
-    <form action="/checkUserName" method="post" style="margin-top: 30px;">
+    <form action = "/login" method="post" style="margin-top: 30px;">
         <label for="insertPetName">Name of Fox: </label>
         <input type="text" id="insertPetName" name="petName" style="width: 500px" autofocus>
         <input type="submit" value="Go">
     </form>
 </main>
 <div>
-    <span th:if="${'nameFox'} == null" th:text=""></span>
-    <span th:if="${'nameFox'} == 'alreadyExists'" th:text="Sorry, this Fox already exists."></span>
-    <span th:if="${'nameFox'} == 'createdNewFox'" th:text="Created a new Fox for you."></span>
+    <h4 style="text-align: center; color: darkgreen">
+        <span th:if="${nameExists} =='exist'" th:text="'Please use other name!'" style="color: darkred"></span>
+        <span th:if="${nameExists} == 'noExist'"  th:text="'Fox Created: ' + ${nameFox}"></span>
+        <span th:if="${nameExists} == null"  th:text="''"></span>
+    </h4>
 </div>
 </body>
 </html>
