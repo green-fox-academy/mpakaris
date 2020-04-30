@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleServiceImpl implements ArticleService{
@@ -37,7 +39,7 @@ public class ArticleServiceImpl implements ArticleService{
     public List<Article> getAllArticles() {
         List<Article> listAllArticles = new ArrayList<>();
         articleRepository.findAll().forEach(listAllArticles::add);
-        return listAllArticles;
+        return listAllArticles.stream().sorted().collect(Collectors.toList());
     }
 
     @Override
@@ -54,6 +56,25 @@ public class ArticleServiceImpl implements ArticleService{
         article = articleRepository.findById(id).orElse(null);
         article.downVote();;
         articleRepository.save(article);
+    }
+
+    @Override
+    public Article findArticleByID(long articleID) {
+        return articleRepository.findById(articleID).get();
+    }
+
+    @Override
+    public void editOwnArticle(long articleID, String articleTitle, String articleUrl, long userID) {
+        Article article = findArticleByID(articleID);
+        article.setArticleTitle(articleTitle);
+        article.setArticleUrl(articleUrl);
+        articleRepository.save(article);
+    }
+
+    @Override
+    public void deleteOwnArticle(long articleID, long userID) {
+       Article article = findArticleByID(articleID);
+       articleRepository.delete(article);
     }
 
 

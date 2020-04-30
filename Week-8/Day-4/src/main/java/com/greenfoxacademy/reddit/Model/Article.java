@@ -57,10 +57,6 @@ public class Article {
         this.articleUrl = articleUrl;
     }
 
-    public int getVotes() {
-        return vote;
-    }
-
     public void upVote() {
         this.vote++;
     }

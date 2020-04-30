@@ -85,4 +85,30 @@ public class MainController {
         userService.logoutUserByID(userID);
         return "redirect:/index";
     }
+
+    @GetMapping("/editArticle/{articleID}/{userID}")
+    public String editOwnArticles(@PathVariable long articleID,
+                                  @PathVariable long userID, Model model) {
+        model.addAttribute("articleToEdit", articleService.findArticleByID(articleID));
+        model.addAttribute("articles", articleService.getAllArticles());
+        model.addAttribute("user", userService.findUserByID(userID));
+        return "main";
+    }
+
+    @PostMapping("/editArticle/{articleID}/{userID}")
+    public String editOwnArticles(@PathVariable long articleID,
+                                  @PathVariable long userID,
+                                  @RequestParam String articleTitle,
+                                  @RequestParam String articleUrl) {
+        articleService.editOwnArticle(articleID, articleTitle, articleUrl, userID);
+        return "redirect:/listArticles/" + userID;
+    }
+
+    @GetMapping("/deleteArticle/{articleID}/{userID}")
+    public String deleteOwnArticle(@PathVariable long articleID,
+                                   @PathVariable long userID) {
+        articleService.deleteOwnArticle(articleID, userID);
+        return "redirect:/listArticles/" + userID;
+    }
+
 }

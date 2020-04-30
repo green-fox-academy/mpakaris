@@ -16,4 +16,10 @@ public interface ArticleService {
 
     void downvoteArticle(long id);
 
+    Article findArticleByID(long articleID);
+
+    void editOwnArticle(long articleID, String articleTitle, String articleUrl, long userID);
+
+    void deleteOwnArticle(long articleID, long userID);
+
 }

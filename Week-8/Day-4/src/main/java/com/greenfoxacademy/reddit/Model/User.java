@@ -16,7 +16,7 @@ public class User {
 
     private boolean loggedIn = false;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<Article> articlesCreated = null;
 
     @Temporal(TemporalType.DATE)
