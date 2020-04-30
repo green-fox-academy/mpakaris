@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+</head>
+<body style="width: 1800px; margin: 0 auto;">
+<h1 style="border-bottom: 5px solid darkred">To Do App: </h1>
+
+<div>
+    <form action="/showAll">
+        <input type="submit" value="Show All Tasks" style="margin: 20px auto; width: 1000px; height: 100px; font-size: 30px; color: whitesmoke; background-color: cadetblue">
+    </form>
+</div>
+<div>
+    <form action="/showOpen">
+        <input type="submit" value="Show Open Tasks" style="margin: 20px auto; width: 1000px; height: 100px; font-size: 30px; color: whitesmoke; background-color: skyblue">
+    </form>
+</div>
+
+<!-- Search for a Task -->
+<form action="/findTask" method="post" style="margin: 20px">
+    <label for="searchQuery" style="font-size: 20px; margin: 4px">Search for:    </label>
+    <input type="text" id="searchQuery" name="search" placeholder="Seach for..." style="padding: 20px; width: 400px; font-size: 25px;">
+    <input type="submit" value="Search" style="margin-left: 10px; width: 150px; height: 50px; font-size: 15px; background-color: darkgreen; color: whitesmoke">
+</form>
+<!-- <form action="/deleteTask" method="post" style="width: 700px;"> -->
+<table style="width: 1200px; border: 5px solid darkred; padding: 10px; text-align: center; font-size: 25px;">
+    <tr>
+        <th style="width:auto">Id</th>
+        <th style="width:auto">Task</th>
+        <th style="width:auto">isUrgent</th>
+        <th style="width:auto" >isDOne</th>
+        <th style="width:auto" >Assigned to</th>
+        <th style="width:auto" >Email</th>
+        <th style="width:auto" >Delete</th>
+        <th style="width:auto" >Edit</th>
+
+    </tr>
+    <tr th:each="task:${tasks}">
+            <td th:text="${task.getId()}"></td>
+            <td  th:text="${task.getTask()}"></td>
+            <td th:text="${task.isUrgent()}"></td>
+            <td th:text="${task.isDone()}"></td>
+            <td th:text="${task.getAsignee().getName()}"></td>
+            <td th:text="${task.getAsignee().getEmail()}"></td>
+            <td>
+                <a th:href="@{ '/' + ${task.getId()} + '/deleteTask'   }">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{ '/' + ${task.getId()} + '/editTask'   }">Edit</a>
+            </td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<form action="/addTask" method="post" style="width:700px; margin-top: 5px; font-size: 25px; padding: 50px; border: 5px solid darkred; position: relative">
+
+    <label style="border-bottom: 1px solid darkred; padding: 10px" for="nameTask">Name of the Task: </label>
+    <input type="text" id="nameTask" name="nameTask" style="font-size: 25px; width: 400px; padding: 20px" placeholder="Buy some nice food..." autofocus><br><br>
+
+    <label style="border-bottom: 1px solid darkred">Priority of Task:</label><br>
+    <input type="radio" id="urgent" name="urgent" value="urgent">
+    <label for="urgent">urgent</label><br>
+    <input type="radio" id="noturgent" name="urgent" value="notUrgent">
+    <label for="noturgent">Not Urgent</label><br>
+    <select name="id_asignee" style="margin: 18px; width: 300px; height: auto; font-size: 25px; ">
+        <option th:each="asignee: ${asignees}" th:text="${asignee.getName()}" th:value="${asignee.getId()}"></option>
+    </select>
+    <input type="submit" style="width: 150px; height: 50px; margin-top: 20px; margin-bottom: 20px; margin-right: 10px">
+</form>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

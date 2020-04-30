@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <header style="width: 600px; margin: 0 auto;">
+        <h1>Welcome to Cognosco!</h1>
+    </header>
+
+    <div style="width: 600px; margin: 0 auto">
+        <h3>Login as User:</h3>
+        <form action="/loginUser" method="post">
+            <input type="text" name="userName" placeholder="username"><br><br>
+            <input type="text" name="userPassword"><br><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div style="width: 600px; margin: 0 auto">
+        <h3>Create a new User:</h3>
+
+        <form action="/createUser" method="post">
+            <input type="text" name="userName" placeholder="Name"><br><br>
+            <input type="email" name="userEmail" placeholder="E-Mail"><br><br>
+            <input type="password" name="userPassword" placeholder="Password"><br><br>
+            <input type="submit" value="Create new User">
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Task</title>
+</head>
+<body style="width: 800px; margin: 0 auto;">
+<h1 style="border-bottom: 5px solid #8b0000">Edit a Task:</h1>
+
+<form method="post" th:action="@{ '/'+ ${task.getId()} + '/editTask'}" th:object="${task}">
+    <label for="taskName"></label>
+    <input type="text" th:value="${task.getTask()}" id="taskName" name="newTask" style="width: 400px; padding: 10px; font-size: 25px">
+    <br>
+    <label>Assign task to:</label>
+    <select name="id_asignee" style="margin: 18px; width: 300px; height: auto; font-size: 25px; ">
+        <option th:each="asignee: ${asignees}" th:text="${asignee.getName()}" th:value="${asignee.getId()}"></option>
+    </select>
+    <br>
+    <div>
+        <input id="urgent" style="padding: 40px;" th:checked="*{urgent}" type="checkbox" name="urgent">
+        <label>Urgent</label><br>
+        <input id="done" style="padding: 40px;" th:checked="*{done}" type="checkbox" name="done">
+        <label>Done</label><br>
+    </div>
+    <!--
+    <div style="margin: 20px;">
+        <input th:if="${task.isUrgent()} == true" th:checked="true" type="radio" name="urgent" th:value="true">
+        <input th:if="${task.isUrgent()} == false" th:checked="false" type="radio" name="urgent" th:value="false">
+        <label>Urgent</label><br>
+        <input th:if="${task.isUrgent()} == true" th:checked="false" type="radio" name="urgent" th:value="false">
+        <input th:if="${task.isUrgent()} == false" th:checked="true" type="radio" name="urgent" th:value="true">
+        <label>Not Urgent</label><br>
+    </div>
+    <div style="margin: 20px;">
+        <input th:if="${task.isDone()} == true" th:checked="true" type="radio" name="done" th:value="true">
+        <input th:if="${task.isDone()} == false" th:checked="false" type="radio" name="done" th:value="false">
+        <label>Done</label><br>
+        <input th:if="${task.isDone()} == true" th:checked="false" type="radio" name="done" th:value="false">
+        <input th:if="${task.isDone()} == false" th:checked="true" type="radio" name="done" th:value="false">
+        <label>Not Done</label><br>
+    </div> -->
+    <input type="submit" value="Edit" style="width: 150px; height: 50px; margin-top: 20px; margin-bottom: 20px; margin-right: 10px">
+</form>
+
+</body>
+</html>

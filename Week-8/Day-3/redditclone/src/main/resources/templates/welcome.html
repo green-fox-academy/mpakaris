@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>You made it!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+</head>
+<body style="background-color: lightgray">
+<main style="background-color: whitesmoke; width: 70%; height: 100vh; margin: 0 auto; text-align: center;
+                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <header>
+        <img src="images/1.jpg" alt="Picture of Whatever">
+        <h1 th:text="'You made it ' + ${user.getUserName()}"></h1>
+        <h2> You are granted Access to unlimited Knowledge!</h2>
+        <h3>Use it wisely, my Son.</h3>
+    </header>
+
+    <div style="margin: 30px auto; width: 50%; color: whitesmoke">
+        <a th:href="'/index/' + ${user.getUserID()}" type="button" class="btn btn-lg btn-block" style="color: lightgray; background-color: #405a73; padding: 60px; font-size: 50px;">Let me in!</a>
+        <a th:href="'/goodBye/' + ${user.getUserID()}" type="button" class="btn btn-lg btn-block" style="color: lightgray; background-color: #405a73; padding: 60px; font-size: 50px;">Let me sleep.</a>
+    </div>
+
+    <article style="width: 98%;">
+        <blockquote style="width:80%; margin: 30px auto; background-color: #405a73; color: whitesmoke; font-size: 40px; padding: 15px">
+            <p style="text-align: left; font-size: 40px"></p>
+            "With Great Power comes great Responsibility"
+            <p style="text-align: right; font-size: 20px;">said by Uncle Ben (The Amazing Spiderman)</p>
+        </blockquote>
+    </article>
+
+</main>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header style="width: 600px; margin: 20px auto">
+        <h1 th:text="'Welcome, ' + ${user.getUserName()}"></h1>
+    </header>
+
+    <div style="width: 600px; margin: 0 auto">
+        <h2>Create Article: </h2>
+        <form th:action="'/createArticle/' + ${user.getId()}" method="post">
+            <input type="text" name="article" placeholder="article"><br><br>
+            <input type="text" name="url" placeholder="url"><br><br>
+            <input type="submit" value="Create Article">
+        </form>
+    </div>
+
+
+    <div th:if="${articles} != null" style="width: 600px; margin: 0 auto">
+        <h2>Articles: </h2>
+        <table  style="width:600px; margin: 0 auto; text-align: center">
+            <tr>
+                <th>Votes</th>
+                <th>UP</th>
+                <th>DOWN</th>
+                <th>Article</th>
+                <th>Created by</th>
+                <th>Date created</th>
+            </tr>
+            <tr th:each="article : ${articles}">
+                <td th:text="${article.getVotes()}"></td>
+                <td>
+                    <a th:text="'+'" th:href="'/upvote/' + ${article.getId()} + '/' + ${user.getId()}"></a>
+                </td>
+                <td>
+                    <a th:text="'-'" th:href="'/downvote/' + ${article.getId()} + '/' + ${user.getId()}"></a>
+                </td>
+                <td>
+                    <a th:text="${article.getArticleTitle()}" th:href="'https://' + ${article.getArticleUrl()}"></a>
+                </td>
+                <td th:text="${article.getUser().getUserName()}"></td>
+                <td th:text="${article.getDate()}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:if="${user.getArticlesCreated()} != null" style="width: 600px; margin: 0 auto">
+        <h2 th:text="'Articles created by User: ' + ${user.getUserName()}"></h2>
+        <table  style="width:600px; margin: 0 auto; text-align: center">
+            <tr>
+                <th>Votes</th>
+                <th>UP</th>
+                <th>DOWN</th>
+                <th>Article</th>
+                <th>Created by</th>
+                <th>Date by</th>
+            </tr>
+            <tr th:each="articleByUser : ${user.getArticlesCreated()}">
+                <td th:text="${articleByUser.getVotes()}"></td>
+                <td>
+                    <a th:text="'+'" th:href="'/upvote/' + ${articleByUser.getId()} + '/' + ${user.getId()}"></a>
+                </td>
+                <td>
+                    <a th:text="'-'" th:href="'/downvote/' + ${articleByUser.getId()} + '/' + ${user.getId()}"></a>
+                </td>
+                <td>
+                    <a th:text="${articleByUser.getArticleTitle()}" th:href="'https://' + ${articleByUser.getArticleUrl()}"></a>
+                </td>
+                <td th:text="${user.getUserName()}"></td>
+                <td th:text="${articleByUser.getDate()}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <form th:action="'/logout/' + ${user.getId()}" method="post" style="width: 600px; margin: 100px auto">
+            <input type="submit" value="Logout" style="font-size: 50px; padding: 50px; background-color: darkred; width: 600px;">
+        </form>
+    </div>
+</body>
+</html>
