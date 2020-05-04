@@ -15,8 +15,8 @@ import java.util.stream.StreamSupport;
 @Repository
 public class TodoServiceImplementation implements TodoService {
 
-   private TodoRepository todoRepository;
-   private AsigneeRepository asigneeRepository;
+    private TodoRepository todoRepository;
+    private AsigneeRepository asigneeRepository;
 
     public TodoServiceImplementation(TodoRepository todoRepository, AsigneeRepository asigneeRepository) {
         this.todoRepository = todoRepository;

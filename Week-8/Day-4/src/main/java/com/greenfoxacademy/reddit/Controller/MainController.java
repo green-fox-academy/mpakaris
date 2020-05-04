@@ -23,7 +23,7 @@ public class MainController {
         this.articleService = articleService;
     }
 
-    @GetMapping ("/index")
+    @GetMapping("/index")
     public String renderLogInPage() {
         return "index";
     }
@@ -51,17 +51,17 @@ public class MainController {
         }
     }
 
-    @GetMapping ("/listArticles/{userID}")
-    public String renderMainPage(@PathVariable long userID, Model model){
+    @GetMapping("/listArticles/{userID}")
+    public String renderMainPage(@PathVariable long userID, Model model) {
         model.addAttribute("articles", articleService.getAllArticles());
         model.addAttribute("user", userService.findUserByID(userID));
         return "main";
     }
 
-    @PostMapping ("/createArticle/{userID}")
-    public String createArticle (@PathVariable long userID,
-                                 @RequestParam String article,
-                                 @RequestParam String url) {
+    @PostMapping("/createArticle/{userID}")
+    public String createArticle(@PathVariable long userID,
+                                @RequestParam String article,
+                                @RequestParam String url) {
         articleService.createArticle(article, url, userID);
         return "redirect:/listArticles/" + userID;
     }
@@ -75,7 +75,7 @@ public class MainController {
 
     @GetMapping("/downvote/{articleID}/{userID}")
     public String downvoteArticle(@PathVariable long articleID,
-                                  @PathVariable long userID){
+                                  @PathVariable long userID) {
         articleService.downvoteArticle(articleID);
         return "redirect:/listArticles/" + userID;
     }

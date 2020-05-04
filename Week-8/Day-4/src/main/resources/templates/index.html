@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
@@ -9,48 +9,48 @@
 </head>
 <body style="background-color: lightgrey">
 
-    <div style="background-color: whitesmoke; width: 1000px; height: 1500px; margin: 0 auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+<div style="background-color: whitesmoke; width: 1000px; height: 1500px; margin: 0 auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
-        <header style="width: 1000px; margin: 0 auto; text-align: center">
-            <img src="header2.JPG" alt="Picture of Logo" style="width: 100%; height: auto">
-            <h1>Welcome to Cognosco!</h1>
-            <h2>Your Information Portal</h2>
-        </header>
+    <header style="width: 1000px; margin: 0 auto; text-align: center">
+        <img src="header2.JPG" alt="Picture of Logo" style="width: 100%; height: auto">
+        <h1>Welcome to Cognosco!</h1>
+        <h2>Your Information Portal</h2>
+    </header>
 
-        <div style="width: 1000px;">
-            <div style="margin: 30px auto; width: 450px; padding-left: 200px; float: left;">
-                <h3>Login as User:</h3>
-                <form action="/loginUser" method="post">
-                    <label>Username:</label><br>
-                    <input type="text" name="userName" placeholder="GreenFox" style="padding:10px"><br><br>
+    <div style="width: 1000px;">
+        <div style="margin: 30px auto; width: 450px; padding-left: 200px; float: left;">
+            <h3>Login as User:</h3>
+            <form action="/loginUser" method="post">
+                <label>Username:</label><br>
+                <input type="text" name="userName" placeholder="GreenFox" style="padding:10px"><br><br>
 
-                    <label>Password:</label><br>
-                    <input type="text" name="userPassword" placeholder="F@x198%_Dent!" style="padding:10px"><br><br>
+                <label>Password:</label><br>
+                <input type="text" name="userPassword" placeholder="F@x198%_Dent!" style="padding:10px"><br><br>
 
-                    <input type="submit" value="Login">
-                </form>
-            </div>
+                <input type="submit" value="Login">
+            </form>
+        </div>
 
-            <div style="width: 450px; margin: 30px auto; padding-left: 150px;">
-                <h3>Create a new User:</h3>
-                <form action="/createUser" method="post">
-                    <label>Username:</label><br>
-                    <input type="text" name="userName" placeholder="GreenFox" style="padding:10px"><br><br>
+        <div style="width: 450px; margin: 30px auto; padding-left: 150px;">
+            <h3>Create a new User:</h3>
+            <form action="/createUser" method="post">
+                <label>Username:</label><br>
+                <input type="text" name="userName" placeholder="GreenFox" style="padding:10px"><br><br>
 
-                    <label>Email Address:</label><br>
-                    <input type="email" name="userEmail" placeholder="green@fox.com" style="padding:10px"><br><br>
+                <label>Email Address:</label><br>
+                <input type="email" name="userEmail" placeholder="green@fox.com" style="padding:10px"><br><br>
 
-                    <label>Password:</label><br>
-                    <input type="password" name="userPassword" placeholder="F@x198%_Dent!" style="padding:10px"><br><br>
+                <label>Password:</label><br>
+                <input type="password" name="userPassword" placeholder="F@x198%_Dent!" style="padding:10px"><br><br>
 
-                    <input type="submit" value="Create new User">
-                </form>
-            </div>
+                <input type="submit" value="Create new User">
+            </form>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
+</div>
+<br>
+<br>
+<br>
+<br>
 </body>
 </html>

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ArticleServiceImpl implements ArticleService{
+public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
     private UserRepository userRepository;
@@ -25,7 +25,8 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public void createArticle(String title, String url, long userID) { ;
+    public void createArticle(String title, String url, long userID) {
+        ;
         User user = userRepository.findById(userID).orElse(null);
         Article article = new Article(title, url, user);
         articleRepository.save(article);
@@ -54,7 +55,8 @@ public class ArticleServiceImpl implements ArticleService{
     public void downvoteArticle(long id) {
         Article article = new Article();
         article = articleRepository.findById(id).orElse(null);
-        article.downVote();;
+        article.downVote();
+        ;
         articleRepository.save(article);
     }
 
@@ -73,8 +75,8 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public void deleteOwnArticle(long articleID, long userID) {
-       Article article = findArticleByID(articleID);
-       articleRepository.delete(article);
+        Article article = findArticleByID(articleID);
+        articleRepository.delete(article);
     }
 
 

@@ -8,104 +8,108 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 <body style="background-color: lightgrey">
-    <div style="background-color: whitesmoke; width: 1000px; height: 3000px; margin: 10px auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <header style="width: 1000px; margin: 20px auto;">
-            <img src="header2.JPG" alt="Picture of Logo" style="width: 100%; height: auto">
-            <h1 th:text="'Welcome, ' + ${user.getUserName()}" style="padding: 20px;"></h1>
-        </header>
+<div style="background-color: whitesmoke; width: 1000px; height: 3000px; margin: 10px auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <header style="width: 1000px; margin: 20px auto;">
+        <img src="header2.JPG" alt="Picture of Logo" style="width: 100%; height: auto">
+        <h1 th:text="'Welcome, ' + ${user.getUserName()}" style="padding: 20px;"></h1>
+    </header>
 
-        <div style="width: 900px; margin: 50px auto">
-            <h2 style="color: darkgreen">Create Article: </h2>
-            <form th:action="'/createArticle/' + ${user.getId()}" method="post">
-                <label>Article Text:</label><br>
-                <input type="text" name="article" placeholder="article" style="width: 600px; padding: 20px;"><br><br>
-                <label>Url:</label><br><br>
-                <input type="text" name="url" placeholder="url" style="width: 600px; padding: 20px;"><br><br>
-                <input type="submit" value="Create Article">
-            </form>
-        </div>
-
-        <div th:if="${articles} != null" style="width: 900px; margin: 50px auto; b">
-            <h2 style="color: darkgreen">Articles: </h2>
-            <table  style="width:900px; margin: 0 auto; text-align: center">
-                <tr>
-                    <th>Votes</th>
-                    <th>UP</th>
-                    <th>DOWN</th>
-                    <th>Article</th>
-                    <th>Created by</th>
-                    <th>Date created</th>
-
-                </tr>
-                <tr th:each="article : ${articles}" style="padding: 10px">
-                    <td th:text="${article.getVote()}"></td>
-                    <td>
-                        <a th:text="'+'" th:href="'/upvote/' + ${article.getId()} + '/' + ${user.getId()}"></a>
-                    </td>
-                    <td>
-                        <a th:text="'-'" th:href="'/downvote/' + ${article.getId()} + '/' + ${user.getId()}"></a>
-                    </td>
-                    <td>
-                        <a th:text="${article.getArticleTitle()}" th:href="'https://' + ${article.getArticleUrl()}"></a>
-                    </td>
-                    <td th:text="${article.getUser().getUserName()}"></td>
-                    <td th:text="${article.getDate()}"></td>
-                </tr>
-            </table>
-        </div>
-
-        <div th:if="${user.getArticlesCreated()} != null" style="width: 900px; margin: 50px auto;">
-            <h2 style="color: darkgreen" th:text="'Articles created by User: ' + ${user.getUserName()}"></h2>
-            <table  style="width:900px; margin: 0 auto; text-align: center">
-                <tr>
-                    <th>Votes</th>
-                    <th>UP</th>
-                    <th>DOWN</th>
-                    <th>Article</th>
-                    <th>Created by</th>
-                    <th>Date by</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                <tr th:each="articleByUser : ${user.getArticlesCreated()}" style="padding: 10px">
-                    <td th:text="${articleByUser.getVote()}"></td>
-                    <td>
-                        <a th:text="'+'" th:href="'/upvote/' + ${articleByUser.getId()} + '/' + ${user.getId()}"></a>
-                    </td>
-                    <td>
-                        <a th:text="'-'" th:href="'/downvote/' + ${articleByUser.getId()} + '/' + ${user.getId()}"></a>
-                    </td>
-                    <td>
-                        <a th:text="${articleByUser.getArticleTitle()}" th:href="'https://' + ${articleByUser.getArticleUrl()}"></a>
-                    </td>
-                    <td th:text="${user.getUserName()}"></td>
-                    <td th:text="${articleByUser.getDate()}"></td>
-                    <td>
-                        <a th:href="'/editArticle/' + ${articleByUser.getId()} + '/' + ${user.getId()}">Edit</a>
-                    </td>
-                    <td>
-                        <a th:href="'/deleteArticle/' + ${articleByUser.getId()} + '/' + ${user.getId()}">Delete</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-        <div th:if="${articleToEdit} != null" style="width: 900px; margin: 50px auto;">
-            <h2 style="color: darkgreen">Edit Article:</h2>
-            <form th:action="'/editArticle/' + ${articleID} + '/' + ${userID}" , method="post">
-                <label for="articleText">Article Text:</label><br><br>
-                <input type="text" name="articleTitle" id="articleText"th:value="${articleToEdit.getArticleTitle()}" autofocus style="width: 600px; padding: 20px;"><br><br>
-                <label for="articleURL">Article URL:</label><br><br>
-                <input type="text" id="articleURL" name="articleUrl" th:value="${articleToEdit.getArticleUrl()}" style="width: 600px; padding: 20px;"><br><br>
-                <input type="submit" value="Edit Article">
-            </form>
-        </div>
-
-        <div style="margin: 50px auto">
-            <form th:action="'/logout/' + ${user.getId()}" method="post" style="width: 600px; margin: 100px auto">
-                <input type="submit" value="Logout" style="color: lightgrey; font-size: 50px; padding: 50px; background-color: darkred; width: 600px;">
-            </form>
-        </div>
+    <div style="width: 900px; margin: 50px auto">
+        <h2 style="color: darkgreen">Create Article: </h2>
+        <form th:action="'/createArticle/' + ${user.getId()}" method="post">
+            <label>Article Text:</label><br>
+            <input type="text" name="article" placeholder="article" style="width: 600px; padding: 20px;"><br><br>
+            <label>Url:</label><br><br>
+            <input type="text" name="url" placeholder="url" style="width: 600px; padding: 20px;"><br><br>
+            <input type="submit" value="Create Article">
+        </form>
     </div>
+
+    <div th:if="${articles} != null" style="width: 900px; margin: 50px auto; b">
+        <h2 style="color: darkgreen">Articles: </h2>
+        <table style="width:900px; margin: 0 auto; text-align: center">
+            <tr>
+                <th>Votes</th>
+                <th>UP</th>
+                <th>DOWN</th>
+                <th>Article</th>
+                <th>Created by</th>
+                <th>Date created</th>
+
+            </tr>
+            <tr th:each="article : ${articles}" style="padding: 10px">
+                <td th:text="${article.getVote()}"></td>
+                <td>
+                    <a th:text="'+'" th:href="'/upvote/' + ${article.getId()} + '/' + ${user.getId()}"></a>
+                </td>
+                <td>
+                    <a th:text="'-'" th:href="'/downvote/' + ${article.getId()} + '/' + ${user.getId()}"></a>
+                </td>
+                <td>
+                    <a th:text="${article.getArticleTitle()}" th:href="'https://' + ${article.getArticleUrl()}"></a>
+                </td>
+                <td th:text="${article.getUser().getUserName()}"></td>
+                <td th:text="${article.getDate()}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:if="${user.getArticlesCreated()} != null" style="width: 900px; margin: 50px auto;">
+        <h2 style="color: darkgreen" th:text="'Articles created by User: ' + ${user.getUserName()}"></h2>
+        <table style="width:900px; margin: 0 auto; text-align: center">
+            <tr>
+                <th>Votes</th>
+                <th>UP</th>
+                <th>DOWN</th>
+                <th>Article</th>
+                <th>Created by</th>
+                <th>Date by</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="articleByUser : ${user.getArticlesCreated()}" style="padding: 10px">
+                <td th:text="${articleByUser.getVote()}"></td>
+                <td>
+                    <a th:text="'+'" th:href="'/upvote/' + ${articleByUser.getId()} + '/' + ${user.getId()}"></a>
+                </td>
+                <td>
+                    <a th:text="'-'" th:href="'/downvote/' + ${articleByUser.getId()} + '/' + ${user.getId()}"></a>
+                </td>
+                <td>
+                    <a th:text="${articleByUser.getArticleTitle()}"
+                       th:href="'https://' + ${articleByUser.getArticleUrl()}"></a>
+                </td>
+                <td th:text="${user.getUserName()}"></td>
+                <td th:text="${articleByUser.getDate()}"></td>
+                <td>
+                    <a th:href="'/editArticle/' + ${articleByUser.getId()} + '/' + ${user.getId()}">Edit</a>
+                </td>
+                <td>
+                    <a th:href="'/deleteArticle/' + ${articleByUser.getId()} + '/' + ${user.getId()}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:if="${articleToEdit} != null" style="width: 900px; margin: 50px auto;">
+        <h2 style="color: darkgreen">Edit Article:</h2>
+        <form th:action="'/editArticle/' + ${articleID} + '/' + ${userID}" , method="post">
+            <label for="articleText">Article Text:</label><br><br>
+            <input type="text" name="articleTitle" id="articleText" th:value="${articleToEdit.getArticleTitle()}"
+                   autofocus style="width: 600px; padding: 20px;"><br><br>
+            <label for="articleURL">Article URL:</label><br><br>
+            <input type="text" id="articleURL" name="articleUrl" th:value="${articleToEdit.getArticleUrl()}"
+                   style="width: 600px; padding: 20px;"><br><br>
+            <input type="submit" value="Edit Article">
+        </form>
+    </div>
+
+    <div style="margin: 50px auto">
+        <form th:action="'/logout/' + ${user.getId()}" method="post" style="width: 600px; margin: 100px auto">
+            <input type="submit" value="Logout"
+                   style="color: lightgrey; font-size: 50px; padding: 50px; background-color: darkred; width: 600px;">
+        </form>
+    </div>
+</div>
 </body>
 </html>

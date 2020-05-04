@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
         // Check if User with same Username exists in List:
         User user = listAllUsers.stream().filter(p -> p.getUserName().toLowerCase()
-        .equals(name.toLowerCase()) && p.getUserPassword().equals(password)).findFirst().orElse(null);
+                .equals(name.toLowerCase()) && p.getUserPassword().equals(password)).findFirst().orElse(null);
 
         //If User exists && Password correct --> set logIn = True && return User | else return null;
         user.setloggedIn(true);

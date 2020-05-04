@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class AsigneeServiceImplementation implements AsigneeService{
+public class AsigneeServiceImplementation implements AsigneeService {
 
-   private AsigneeRepository asigneeRepository;
+    private AsigneeRepository asigneeRepository;
 
     public AsigneeServiceImplementation(AsigneeRepository asigneeRepository) {
         this.asigneeRepository = asigneeRepository;

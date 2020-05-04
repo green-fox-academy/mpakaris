@@ -9,7 +9,8 @@
 
 <form method="post" th:action="@{ '/'+ ${task.getId()} + '/editTask'}" th:object="${task}">
     <label for="taskName"></label>
-    <input type="text" th:value="${task.getTask()}" id="taskName" name="newTask" style="width: 400px; padding: 10px; font-size: 25px">
+    <input type="text" th:value="${task.getTask()}" id="taskName" name="newTask"
+           style="width: 400px; padding: 10px; font-size: 25px">
     <br>
     <label>Assign task to:</label>
     <select name="id_asignee" style="margin: 18px; width: 300px; height: auto; font-size: 25px; ">
@@ -39,7 +40,8 @@
         <input th:if="${task.isDone()} == false" th:checked="true" type="radio" name="done" th:value="false">
         <label>Not Done</label><br>
     </div> -->
-    <input type="submit" value="Edit" style="width: 150px; height: 50px; margin-top: 20px; margin-bottom: 20px; margin-right: 10px">
+    <input type="submit" value="Edit"
+           style="width: 150px; height: 50px; margin-top: 20px; margin-bottom: 20px; margin-right: 10px">
 </form>
 
 </body>

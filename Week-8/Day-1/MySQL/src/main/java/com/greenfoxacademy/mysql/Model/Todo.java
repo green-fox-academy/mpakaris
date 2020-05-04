@@ -21,7 +21,9 @@ public class Todo {
     private Asignee asignee;
 
     public Todo() {
-    };
+    }
+
+    ;
 
     public Todo(String task, boolean urgent, boolean done) {
         this.task = task;

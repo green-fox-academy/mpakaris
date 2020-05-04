@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: lightgray;
+    }
+
+    main {
+        width: 75%;
+        height: 200vh;
+        margin: 0 auto;
+        background-color: whitesmoke;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    header {
+        margin: 20px auto;
+        text-align: center;
+        color: rgb(146, 176, 194);
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .button-box {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn {
+        width: 300px;
+        height: 150px;
+        line-height: 130px;
+        font-size: 25px;
+        background-color: rgb(254, 183, 75);
+    }
+
+    .newTask {
+        width: 75%;
+        margin: 30px auto;
+    }
+
+    .newTask-container1 {
+        width: 45%;
+        margin: 20px;
+        float: left;
+    }
+
+    .newTask-btn {
+        width: 90%;
+        padding: 20px;
+        font-size: 25px;
+        background-color: rgb(254, 183, 75);
+        color: whitesmoke;
+        margin: 0 auto;
+    }
+
+    h4 {
+        color: rgb(254, 183, 75);
+    }
+
+</style>
+
+<body>
+<main>
+    <header>
+        <img src="header.JPG" alt="">
+        <h1>Manage your Tasks</h1>
+        <h2 th:if="${main} == true">Start by Click</h2>
+    </header>
+
+    <assignee th:if="${createAssignee} == true">
+        <h3>Create a new Assignee:</h3>
+        <form action="/createAssignee" method="post">
+            <label for="userName">Username:</label>
+            <input type="text" id="userName" name="userName" placeholder="Nikos">
+            <label for="userEmail">User E-mail:</label>
+            <input type="email" id="userEmail" name="userEmail" placeholder="nikos@gmail.com">
+            <input type="submit" value="Create New User">
+        </form>
+
+        <div th:if="${assignee} != null">
+            <h3 th:text="'Congratulations. A new Assignee was created:'"></h3>
+            <h4 th:text="'Name: ' + ${assignee.getAssigneeName()}"></h4>
+            <h4 th:text="'Email: ' + ${assignee.getAssigneeEmail()}"></h4>
+        </div>
+    </assignee>
+
+    <!-- CREATE NEW TASK ======================================================================================= -->
+
+    <div class="newTask" th:if="${newTask} == true">
+        <form action="/createnewtask" method="post">
+            <h4>Create New Task:</h4>
+            <!-- <div class="newTask-container1">
+                 <label>Task:</label><br>
+                 <input type="text" name="taskName"><br><br>
+
+                 <label>Task Description:</label><br>
+                 <input type="text" name="taskDescription"><br><br>
+
+                 <label>isUrgent:</label><br>
+                 <input type="checkbox" name="isUrgent" value="true"><br><br>
+             </div> -->
+
+            <div class="newTask-container1">
+                <label>Start Date:</label><br>
+                <input type="date" name="dateStart" value="dateStart"><br><br>
+
+                <label>Due Date:</label><br>
+                <input type="date" name="dateDue" value="dateDue"><br><br>
+
+                <label>Assignee: </label><br>
+                <select id="cars" name="assignee">
+                    <option value="volvo">Volvo</option>
+                </select><br><br>
+            </div>
+            <input class="btn newTask-btn" type="submit" value="Create New Task"><br>
+        </form>
+    </div>
+
+    <!--
+    <div th:if="${taskCreated} != null">
+        <h3>Congratulations! A new Task was successfully created:</h3>
+        <div class="card" style="width: 400px;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${taskCreated.getTaskName()}"></h5>
+                <p class="card-text" th:text="${taskCreated.getTaskDescription()}"></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="'Date created: ' + ${taskCreated.getDateCreated()}"></li>
+                <li class="list-group-item" th:text="'Created by: '${taskCreated.get()}"></li>
+                <li class="list-group-item" th:text="'Date Start:' + ${taskCreated.getDateStart()}"></li>
+                <li class="list-group-item" th:text="'Date Due:' + ${taskCreated.getDateDue()}"></li>
+                <li class="list-group-item">
+                    <span th:if="${taskCreated.isPriority()} == true" th:text="'Priority Task!'"></span>
+                    <span th:if="${taskCreated.isPriority()} == false" th:text="'Not prioritized Task!'"></span>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+
+    <!-- Navigation Buttons ==================================================================================== -->
+
+    <div class="button-box col-lg-12">
+        <a href="/viewalltasks" class="btn btn-info" role="button">View All Tasks</a>
+        <a href="/viewmytasks" class="btn btn-info" role="button">View My Tasks</a>
+        <a href="/createnewtask" class="btn btn-info" role="button">Create New Task</a>
+    </div>
+
+    <div class="button-box col-lg-12">
+        <a href="/viewallassignee" class="btn btn-info" role="button">View All Assignee</a>
+        <a href="/viewtaskbyassignee" class="btn btn-info" role="button">View Task by Assignee</a>
+        <a href="/createnewassignee" class="btn btn-info" role="button">Create New Assignee</a>
+    </div>
+
+    <div class="button-box col-lg-12">
+        <a href="/" class="btn btn-info" role="button">HOME</a>
+    </div>
+
+</main>
+</body>
+</html>
+

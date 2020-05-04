@@ -36,7 +36,7 @@ public class MysqlApplication implements CommandLineRunner {
         repo.save(new Todo("Daily Task", true, true));
         repo.save(new Todo("Make the Bed", false, false));
         repo.save(new Todo("Wash up", true, false));
-        repo.save(new Todo("Clean the kitchen",  true, false));
+        repo.save(new Todo("Clean the kitchen", true, false));
         repo.save(new Todo("Cut the grass", true, true));
         repo.save(new Todo("Sweep the floor", true, false));
         repo.save(new Todo("Vaccum the carpet", false, false));
@@ -53,19 +53,19 @@ public class MysqlApplication implements CommandLineRunner {
         asignee.save(new Asignee("Eszter"));
         asignee.save(new Asignee("Kolbasz"));
 
-        todoService.editTask(1,"Daily Task", true, true, 1);
-        todoService.editTask(2, "Make the Bed", false, false,1);
-        todoService.editTask(3, "Wash up", true, false,1);
-        todoService.editTask(4,"Clean the kitchen",  true, false,1);
-        todoService.editTask(5,"Cut the grass", true, true,1);
-        todoService.editTask(6,"Sweep the floor", true, false,1);
-        todoService.editTask(7,"Vaccum the carpet", false, false,1);
-        todoService.editTask(8,"Mop", true, true,1);
-        todoService.editTask(9,"Shop", true, false,1);
-        todoService.editTask(10,"Bath", false, false,1);
-        todoService.editTask(11,"Learn Coding", true, false,1);
-        todoService.editTask(12,"Play with Cat", true, true,1);
-        todoService.editTask(13,"Call Mummy", false, false,1);
-        todoService.editTask(14,"Buy new Phone", true, true,1);
+        todoService.editTask(1, "Daily Task", true, true, 1);
+        todoService.editTask(2, "Make the Bed", false, false, 1);
+        todoService.editTask(3, "Wash up", true, false, 1);
+        todoService.editTask(4, "Clean the kitchen", true, false, 1);
+        todoService.editTask(5, "Cut the grass", true, true, 1);
+        todoService.editTask(6, "Sweep the floor", true, false, 1);
+        todoService.editTask(7, "Vaccum the carpet", false, false, 1);
+        todoService.editTask(8, "Mop", true, true, 1);
+        todoService.editTask(9, "Shop", true, false, 1);
+        todoService.editTask(10, "Bath", false, false, 1);
+        todoService.editTask(11, "Learn Coding", true, false, 1);
+        todoService.editTask(12, "Play with Cat", true, true, 1);
+        todoService.editTask(13, "Call Mummy", false, false, 1);
+        todoService.editTask(14, "Buy new Phone", true, true, 1);
     }
 }

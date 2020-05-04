@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-   User findUserByID(long id);
+    User findUserByID(long id);
 
     User createNewUser(String name, String email, String password);
 
