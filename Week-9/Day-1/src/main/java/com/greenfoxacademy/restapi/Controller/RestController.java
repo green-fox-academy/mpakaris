@@ -96,9 +96,22 @@ public class RestController {
         return ResponseEntity.ok().body(logService.getAllLogs());
     }
 
+    @PostMapping("/sith")
+    public ResponseEntity reverseSentence(@RequestBody String sentence) {
+        return ResponseEntity.ok().body(logService.reverseSentence(sentence));
+    }
 
+    @GetMapping("/log/pagination")
+    public ResponseEntity getTop10(@RequestParam (required = false) String count,
+                                   @RequestParam (required = false) String page,
+                                   @RequestParam (required = false) String search) {
+        if (search != null) {
+            return ResponseEntity.ok().body(logService.findLogsByKeyWord(search));
+        } else {
+            return ResponseEntity.ok().body(logService.findLogsByParameters(count, page));
+        }
 
-
+    }
 
 
 
