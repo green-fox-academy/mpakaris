@@ -38,15 +38,12 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<Log> findLogsByParameters(String count, String page) {
+    public List<Log> findLogsByParameters(String entries, String page) {
         List<Log> allLogs = new ArrayList<>();
         logRepo.findAll().forEach(allLogs::add);
-
-        int countLogs = Integer.parseInt(count);
+        int countLogs = Integer.parseInt(entries);
         int pageNumber = Integer.parseInt(page);
-
         List<Log> returnLogs = new ArrayList<>();
-
         for (int i = (pageNumber*countLogs)-countLogs; i <pageNumber*countLogs;i++) {
             if (i < allLogs.size()) {
                 returnLogs.add(allLogs.get(i));
@@ -72,16 +69,34 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
+    public List<Log> fetch10NativeSQL() {
+        List<Log> returnLogs = logRepo.selectTopTen();
+        return returnLogs;
+    }
+
+    @Override
+    public List<Log> findLogsByKeyWordNative(String keyWord) {
+        List<Log> resultLog = logRepo.selectByKeyWord(keyWord);
+        return resultLog;
+    }
+
+    @Override
+    public List<Log> findLogsByParametersNative(String entries, String page) {
+        int entriesNumber = Integer.parseInt(entries);
+        int pageNumber = Integer.parseInt(page);
+        int limitBottom = (entriesNumber*pageNumber)+ 1 - entriesNumber;
+        int limitTop = (entriesNumber*pageNumber)+1;
+        List<Log> resultLogs = logRepo.selectByPagination(limitBottom, limitTop);
+        return resultLogs;
+    }
+
+    @Override
     public String reverseSentence(String originalSentence) {
-
         String replace = originalSentence.toLowerCase().replaceAll("[{|}|\n|\t|\"]", "");
-
         List<String> split = new ArrayList<>(Arrays.asList(replace.split("\\.")));
-
         String newResult = "";
         for (String phrase : split) {
             List<String> words = Arrays.asList(phrase.split(" "));
-
             for (int i = 0; i < words.size() - 1; i += 2) {
                 newResult += words.get(i + 1) + " " + words.get(i) + " ";
             }

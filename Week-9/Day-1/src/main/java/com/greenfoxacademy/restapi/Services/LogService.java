@@ -21,5 +21,11 @@ public interface LogService {
 
     List<Log> findLogsByKeyWord(String keyWord);
 
+    List<Log> fetch10NativeSQL();
+
+    List<Log> findLogsByKeyWordNative(String search);
+
+    List<Log> findLogsByParametersNative(String entries, String page);
+
 
 }

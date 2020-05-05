@@ -10,8 +10,13 @@ import java.util.List;
 @Repository
 public interface LogRepository extends CrudRepository<Log, Long> {
 
-    @Query(value = "SELECT * FROM log ORDER BY created_at DESC", nativeQuery =true)
+    @Query(value = "SELECT * FROM log LIMIT 10", nativeQuery =true)
     List<Log> selectTopTen();
 
+    @Query(value = "SELECT * FROM log WHERE data = ?1", nativeQuery =true)
+    List<Log> selectByKeyWord(String keyWord);
+
+    @Query(value = "SELECT * FROM log WHERE LIMIT ?1 OFFSET ?2 ORDER BY id", nativeQuery =true)
+    List<Log> selectByPagination(int bottomLimit, int topLimit);
 
 }
