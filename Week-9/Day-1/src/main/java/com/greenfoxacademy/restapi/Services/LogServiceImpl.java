@@ -84,8 +84,8 @@ public class LogServiceImpl implements LogService {
     public List<Log> findLogsByParametersNative(String entries, String page) {
         int entriesNumber = Integer.parseInt(entries);
         int pageNumber = Integer.parseInt(page);
-        int limitBottom = (entriesNumber*pageNumber)+ 1 - entriesNumber;
-        int limitTop = (entriesNumber*pageNumber)+1;
+        int limitBottom = (entriesNumber*pageNumber)-entriesNumber;
+        int limitTop = (entriesNumber*pageNumber            );
         List<Log> resultLogs = logRepo.selectByPagination(limitBottom, limitTop);
         return resultLogs;
     }

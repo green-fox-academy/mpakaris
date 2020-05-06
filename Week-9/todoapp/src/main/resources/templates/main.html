@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
+
+<style>
+    body {
+        background-color: lightgray;
+    }
+
+    main {
+        width: 80%;
+        height: 100vh;
+        margin: 0 auto;
+        background-color: whitesmoke;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    header {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    header img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .newTodo {
+        width: 500px;
+        padding: 25px;
+        font-size: 25px;
+        margin: 50px auto;
+    }
+
+    .newTodoContainer {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    table {
+        margin: 30px auto;
+    }
+
+    .editTaskContainer {
+        width: 500px;
+        margin: 30px auto;
+    }
+
+</style>
+
+<body>
+<main>
+    <!-- ==================================================================================== -->
+
+    <header>
+        <img src="header.JPG" alt="Picture of Logo">
+        <h1>Niko's Todo Web-App!</h1>
+    </header>
+
+    <!-- ==================================================================================== -->
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Todo</th>
+            <th scope="col">Assignee</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Done</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${listTodos}">
+            <td th:text="${item.getId()}"></td>
+            <td>
+                <span th:if="${item.isCompleted()} == true" th:text="${item.getTaskName()}" style="text-decoration-line: line-through"></span>
+                <span th:if="${item.isCompleted()} == false" th:text="${item.getTaskName()}"></span>
+            </td>
+            <td>Nikos Mpakaris</td>
+            <td>
+                <a th:href="'/edit/' + ${item.getId()}">Edit</a>
+            </td>
+            <td>
+                <a th:href="'/complete/' + ${item.getId()}">Mark as Done!</a>
+            </td>
+            <td>
+                <a th:href="'/delete/' + ${item.getId()}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================================================================================== -->
+
+    <div th:if="${editTodo} == true" class="input-group mb-3 editTaskContainer">
+        <form th:action="'/edit/' + *{id}" method="post" th:object="${todo}">
+            <h3>Edit Task: </h3>
+            <input autofocus type="text" class="form-control" th:field="*{taskName}" th:value="*{taskName}" placeholder="Buy some milk" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="submit" class="btn btn-primary newTodo" value="Edit Task" role="button">
+        </form>
+    </div>
+
+    <!-- ==================================================================================== -->
+
+    <div class="newTodoContainer">
+        <a th:if="${newTodo} == null" class="btn btn-primary newTodo" href="/newtodo" role="button">Add New Todo</a>
+        <div th:if="${newTodo} == true">
+            <form th:action="'/newtodo'" method="post" th:object="${todo}">
+                <h3>Add New Task: </h3>
+                <input autofocus type="text" class="form-control" th:field="*{taskName}" th:value="*{taskName}" placeholder="Buy some milk" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="submit" class="btn btn-primary newTodo" value="Add Task" role="button">
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================================================================================== -->
+
+</main>
+</body>
+</html>

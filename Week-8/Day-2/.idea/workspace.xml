@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c72ce12a-b7e6-4726-ad28-f26315cb308a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Day-1/MySQL/src/main/java/com/greenfoxacademy/mysql/Controller/TodoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Day-1/MySQL/src/main/java/com/greenfoxacademy/mysql/Controller/TodoController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1bGscCNvVLv35nsaH68pWPeFsvL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c72ce12a-b7e6-4726-ad28-f26315cb308a" name="Default Changelist" comment="" />
+      <created>1588269841991</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588269841991</updated>
+      <workItem from="1588269843535" duration="151000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="126" y="31" key="new project wizard" timestamp="1588269993445">
+      <screen x="0" y="0" width="1714" height="1113" />
+    </state>
+    <state x="126" y="31" key="new project wizard/0.0.1714.1113@0.0.1714.1113" timestamp="1588269993445" />
+  </component>
+</project>

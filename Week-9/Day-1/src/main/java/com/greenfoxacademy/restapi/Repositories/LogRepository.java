@@ -16,7 +16,7 @@ public interface LogRepository extends CrudRepository<Log, Long> {
     @Query(value = "SELECT * FROM log WHERE data = ?1", nativeQuery =true)
     List<Log> selectByKeyWord(String keyWord);
 
-    @Query(value = "SELECT * FROM log WHERE LIMIT ?1 OFFSET ?2 ORDER BY id", nativeQuery =true)
+    @Query(value = "SELECT * FROM log LIMIT ?2 OFFSET ?1", nativeQuery =true)
     List<Log> selectByPagination(int bottomLimit, int topLimit);
 
 }
