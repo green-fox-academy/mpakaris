@@ -1,7 +1,11 @@
 package com.gfa.todoapp.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Todo {
@@ -15,16 +19,30 @@ public class Todo {
     @Temporal( value = TemporalType.DATE)
     private Date dateCreated;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Temporal( value = TemporalType.DATE)
     private Date dateDue;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn
+    private Assignee taskAssignee;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Subtask> subtasks;
 
     public Todo() {
     }
 
-    public Todo(String taskName) {
+    public Todo(String taskName, Assignee assignee) {
         this.taskName = taskName;
         this.dateCreated = new Date();
         this.isCompleted = false;
+        if (assignee == null) {
+            this.taskAssignee = new Assignee("none");
+        } else {
+            this.taskAssignee = assignee;
+        }
+        this.subtasks = new ArrayList<>();
     }
 
     public long getId() {
@@ -65,5 +83,21 @@ public class Todo {
 
     public void setDateDue(Date dateDue) {
         this.dateDue = dateDue;
+    }
+
+    public Assignee getTaskAssignee() {
+        return taskAssignee;
+    }
+
+    public void setTaskAssignee(Assignee taskAssignee) {
+        this.taskAssignee = taskAssignee;
+    }
+
+    public List<Subtask> getSubtasks() {
+        return subtasks;
+    }
+
+    public void setSubtasks(List<Subtask> subtasks) {
+        this.subtasks = subtasks;
     }
 }

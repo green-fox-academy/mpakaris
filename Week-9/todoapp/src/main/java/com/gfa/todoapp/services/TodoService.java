@@ -14,6 +14,8 @@ public interface TodoService {
 
     void markAsCompleted(long id);
 
+    void reopenTask(long id);
+
     void deleteTodo(long id);
 
     List<Todo> findAllTodo();

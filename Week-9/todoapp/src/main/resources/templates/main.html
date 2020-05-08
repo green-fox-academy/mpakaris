@@ -15,7 +15,7 @@
 
     main {
         width: 80%;
-        height: 100vh;
+        height: 105%;
         margin: 0 auto;
         background-color: whitesmoke;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -30,11 +30,23 @@
     header img {
         width: 100%;
         height: auto;
-        margin-bottom: 15px;
+        margin-bottom: 0;
+    }
+
+    header h1 {
+        margin: 15px auto;
+    }
+
+    .buttonContainer {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .newTodo {
-        width: 500px;
+        width: 350px;
         padding: 25px;
         font-size: 25px;
         margin: 50px auto;
@@ -42,7 +54,9 @@
 
     .newTodoContainer {
         width: 500px;
-        margin: 0 auto;
+        margin: 20px auto;
+        align-items: center;
+        justify-content: center;
     }
 
     table {
@@ -51,78 +65,267 @@
 
     .editTaskContainer {
         width: 500px;
-        margin: 30px auto;
+        margin: 20px auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    form    {
+        align-items: center;
+        justify-content: center;
     }
 
 </style>
 
 <body>
 <main>
-    <!-- ==================================================================================== -->
+    <!-- === Header with Logo: ==================================================================================== -->
 
     <header>
         <img src="header.JPG" alt="Picture of Logo">
+
+        <!-- === Navbar: ==================================================================================== -->
+
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/home">Home</a>
+
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/newtodo">NEW Todo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/newassignee">NEW Assignee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <h1>Niko's Todo Web-App!</h1>
     </header>
 
-    <!-- ==================================================================================== -->
+    <!--=== Table with all the Tasks: ================================================================================== -->
 
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Todo</th>
-            <th scope="col">Assignee</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Done</th>
-            <th scope="col">Delete</th>
-        </tr>
+    <table class="table" th:if="${seeAllTodo} == true">
+        <thead class="table thead-dark table-hover">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Todo</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Date Due</th>
+                <th scope="col">Assignee</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Done</th>
+                <th scope="col">Reopen</th>
+                <th scope="col">Delete</th>
+            </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${listTodos}">
-            <td th:text="${item.getId()}"></td>
-            <td>
-                <span th:if="${item.isCompleted()} == true" th:text="${item.getTaskName()}" style="text-decoration-line: line-through"></span>
-                <span th:if="${item.isCompleted()} == false" th:text="${item.getTaskName()}"></span>
-            </td>
-            <td>Nikos Mpakaris</td>
-            <td>
-                <a th:href="'/edit/' + ${item.getId()}">Edit</a>
-            </td>
-            <td>
-                <a th:href="'/complete/' + ${item.getId()}">Mark as Done!</a>
-            </td>
-            <td>
-                <a th:href="'/delete/' + ${item.getId()}">Delete</a>
-            </td>
-        </tr>
+            <tr th:each="item : ${listTodos}">
+                <td th:text="${item.getId()}"></td>
+                <td>
+                    <a th:if="${item.isCompleted()} == true" th:text="${item.getTaskName()}" style="text-decoration-line: line-through"></a>
+                    <a th:if="${item.isCompleted()} == false" th:text="${item.getTaskName()}" th:href="'/seesubtasks/' + ${item.getId()}"></a>
+                </td>
+                <td th:text="${item.getDateCreated()}"></td>
+                <td th:text="${item.getDateDue()}"></td>
+                <td>
+                    <span th:if="${item.getTaskAssignee()} == null" th:text="'none'"></span>
+                    <span th:if="${item.getTaskAssignee()} != null" th:text="${item.getTaskAssignee().getAssigneeName()}"></span>
+                </td>
+                <td>
+                    <a th:if="${item.isCompleted()} != true" th:href="'/edit/' + ${item.getId()}">Edit</a>
+                </td>
+                <td>
+                    <span th:if="${item.isCompleted()} == true">Closed</span>
+                    <a th:if="${item.isCompleted()} == false" th:href="'/complete/' + ${item.getId()}">Close</a>
+                </td>
+                <td>
+                    <span th:if="${item.isCompleted()} == false">Open</span>
+                    <a th:if="${item.isCompleted()} == true" th:href="'/reopen/' + ${item.getId()}">Reopen!</a>
+                </td>
+                <td>
+                    <a th:href="'/delete/' + ${item.getId()}">Delete</a>
+                </td>
+            </tr>
         </tbody>
     </table>
 
-    <!-- ==================================================================================== -->
+    <!--=== NEW Task: ==================================================================================== -->
+
+    <div th:if="${newTodo} == true" class="input-group mb-3 editTaskContainer">
+        <form th:action="'/newtodo/'" method="post" th:object="${todo}">
+            <h3>New Task: </h3>
+            <input autofocus type="text" class="form-control" th:field="*{taskName}" th:value="*{taskName}"
+                                placeholder="Buy some milk" aria-label="Username" aria-describedby="basic-addon1"><br>
+            <h3>Create Due Date:</h3>
+            <input type="date" th:name="*{dateDue}" th:field="*{dateDue}" style="width: 500px; padding: 15px"><br><br>
+            <h3>Choose Assignee:</h3>
+            <select th:field="*{taskAssignee}" class="form-control col-sm-4" id="sel2">
+                <option type="text" th:each="assignee : ${listAssignees}" th:text="${assignee.getAssigneeName()}"
+                        name="assignee"  th:value="${assignee.getId()}"></option>
+            </select>
+            <input type="submit" class="btn btn-danger newTodo" value="Create Task" role="button">
+        </form>
+    </div>
+
+    <!--=== EDIT Task: ==================================================================================== -->
 
     <div th:if="${editTodo} == true" class="input-group mb-3 editTaskContainer">
         <form th:action="'/edit/' + *{id}" method="post" th:object="${todo}">
             <h3>Edit Task: </h3>
-            <input autofocus type="text" class="form-control" th:field="*{taskName}" th:value="*{taskName}" placeholder="Buy some milk" aria-label="Username" aria-describedby="basic-addon1">
-            <input type="submit" class="btn btn-primary newTodo" value="Edit Task" role="button">
+            <input autofocus type="text" class="form-control" th:field="*{taskName}" th:value="*{taskName}"
+                                placeholder="Buy some milk" aria-label="Username" aria-describedby="basic-addon1"><br>
+            <h3>Edit Due Date:</h3>
+            <input type="date" th:name="*{dateDue}" th:field="*{dateDue}" style="width: 500px; padding: 15px"><br><br>
+            <h3>Edit Assignee:</h3>
+                <select th:field="*{taskAssignee}" class="form-control col-sm-4" id="sel1">
+                    <option type="text" th:each="assignee : ${listAssignees}" th:text="${assignee.getAssigneeName()}"
+                                name="assignee"  th:value="${assignee.getId()}"></option>
+                </select>
+            <input type="submit" class="btn btn-danger newTodo" value="Edit Task" role="button">
         </form>
     </div>
 
-    <!-- ==================================================================================== -->
+    <!--SUBTASKS of MAIN TASK: ==================================================================================== -->
 
-    <div class="newTodoContainer">
-        <a th:if="${newTodo} == null" class="btn btn-primary newTodo" href="/newtodo" role="button">Add New Todo</a>
-        <div th:if="${newTodo} == true">
-            <form th:action="'/newtodo'" method="post" th:object="${todo}">
-                <h3>Add New Task: </h3>
-                <input autofocus type="text" class="form-control" th:field="*{taskName}" th:value="*{taskName}" placeholder="Buy some milk" aria-label="Username" aria-describedby="basic-addon1">
-                <input type="submit" class="btn btn-primary newTodo" value="Add Task" role="button">
-            </form>
-        </div>
+    <div class="table" th:if="${showSubTasks}">
+        <table class="table thead-dark table-hover">
+            <h4 th:text="'Maintask: ' + ${leadTask.getTaskName()}" style="padding-left: 10px"></h4>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>SubTask</th>
+                <th>Assignee</th>
+                <th>Date Due</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="subtask : ${leadTaskSubtasks}">
+                <td th:text="${subtask.getId()}"></td>
+                <td th:text="${subtask.getSubtaskName()}"></td>
+                <td th:text="${subtask.getSubtaskAssignee().getAssigneeName()}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
-    <!-- ==================================================================================== -->
+    <div th:if="${showSubTasks}" class="buttonContainer">
+        <a class="btn btn-light newTodo" th:href="'/addsubtask/' + ${leadTask.getId()}" role="button">Add Subtask</a>
+    </div>
+
+    <!-- ADD Subtask: ==================================================================================== -->
+
+    <div th:if="${newSubtask} == true" class="input-group mb-3 editTaskContainer">
+        <form th:action="'/addsubtask/' + ${leadTask.getId()}" method="post" th:object="${subtask}">
+            <h3 th:text="'Add New Subtask to Task:'"></h3>
+            <h4 th:text="${leadTask.getTaskName()}"></h4><br>
+            <input autofocus type="text" class="form-control" th:field="*{subtaskName}" aria-label="Username" aria-describedby="basic-addon1"><br>
+            <h3>Choose Assignee:</h3>
+            <select th:field="*{subtaskAssignee}" class="form-control col-sm-4" id="sel4">
+                <option type="text" th:each="assignee : ${listAssignees}" th:text="${assignee.getAssigneeName()}"
+                        name="assignee"  th:value="${assignee.getId()}"></option>
+            </select>
+            <input type="submit" class="btn btn-danger newTodo" value="Create Task" role="button">
+        </form>
+    </div>
+
+    <!-- ASSIGNEE Table: ==================================================================================== -->
+
+    <div class="table" th:if="${seeAssignees} == true">
+        <table class="table thead-dark table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Assignee</th>
+                <th>Date Created</th>
+                <th>See Todos</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="assignee : ${listAssignees}" th:object="${assignee}">
+                <td th:text="${assignee.getId()}"></td>
+                <td th:text="*{assigneeName}"></td>
+                <td>
+                    <span th:if="${assignee.getDate()} != null" th:text="${assignee.getDate()}"></span>
+                    <span th:if="${assignee.getDate()} == null" th:text="'Created before Time was born!'"></span>
+                </td>
+                <td>
+                    <a th:href="'/seetodos/' + ${assignee.getId()}">See Tasks</a>
+                </td>
+                <td>
+                    <a th:href="'/editassignee/' + ${assignee.getId()}">Edit</a>
+                </td>
+                <td>
+                    <a th:href="'/deleteassignee/' + ${assignee.getId()}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--=== NEW Assignee: ==================================================================================== -->
+
+    <div class="newTodoContainer" th:if="${newAssignee} == true">
+        <form th:action="'/newassignee'" method="post">
+            <h3>Add New Assignee: </h3>
+            <input autofocus type="text" class="form-control" name="name" placeholder="Nikos" aria-label="assigneeName" aria-describedby="basic-addon1"><br>
+            <input type="submit" class="btn btn-danger newTodo" value="Add Assignee" role="button">
+        </form>
+    </div>
+
+    <!-- EDIT Assignee: ==================================================================================== -->
+
+    <div class="newTodoContainer" th:if="${editAssignee} == true">
+        <form th:action="'/editassignee/' + ${editingAssignee.getId()}" method="post">
+            <h3>Edit Assignee: </h3>
+            <input autofocus type="text" class="form-control" name="name" th:value="${editingAssignee.getAssigneeName()}" aria-label="assigneeName" aria-describedby="basic-addon1"><br>
+            <input type="submit" class="btn btn-danger newTodo" value="Add Assignee" role="button">
+        </form>
+    </div>
+
+    <!-- TASK of ASSIGNEE: ==================================================================================== -->
+
+    <div class="table" th:if="${showTasksOfAssignee} == true">
+        <table class="table thead-dark table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Assignee</th>
+                <th>Task</th>
+                <th>Date Due</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task : ${assigneeTasks}" th:object="${task}">
+                <td th:text="*{id}"></td>
+                <td th:text="${taskOfAssignee.getAssigneeName()}"></td>
+                <td th:text="*{taskName}"></td>
+                <td th:text="*{dateDue}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--=== All Buttons: ==================================================================================== -->
+
+    <div class="buttonContainer" th:if="${showButtons} == true">
+        <a class="btn btn-light newTodo" href="/newtodo" role="button">Add New Todo</a>
+        <a class="btn btn-light newTodo" href="/main" role="button">See All Todo</a>
+        <a class="btn btn-light newTodo" href="/newassignee" role="button">Add New Assignee</a>
+        <a class="btn btn-light newTodo" href="/seeassignees" role="button">See All Assignees</a>
+    </div>
 
 </main>
 </body>
