@@ -66,6 +66,6 @@ public class TodoServiceImplementation implements TodoService{
 
     @Override
     public Todo findTodoById(long id) {
-        return todoRepository.findById(id).get();
+        return todoRepository.findById(id).orElse(null);
     }
 }

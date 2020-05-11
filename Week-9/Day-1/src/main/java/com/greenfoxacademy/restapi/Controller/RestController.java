@@ -20,7 +20,10 @@ public class RestController {
     public ResponseEntity doubleNumber(@RequestParam (required = false) Integer input) {
         if (input != null) {
             logService.createNewLog("/doubling", "value=" + input);
-            return ResponseEntity.ok().body(new Doubling(input));
+            Doubling doubling = new Doubling(input);
+            int result = logService.doubling(input);
+            doubling.setResult(result);
+            return ResponseEntity.ok().body(doubling);
         } else {
             return ResponseEntity.ok().body(new Error("Please provide an input!"));
         }

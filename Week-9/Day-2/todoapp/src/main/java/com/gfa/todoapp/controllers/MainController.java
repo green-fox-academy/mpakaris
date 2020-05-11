@@ -1,19 +1,17 @@
 package com.gfa.todoapp.controllers;
 
-import com.gfa.todoapp.models.Assignee;
 import com.gfa.todoapp.models.Subtask;
 import com.gfa.todoapp.models.Todo;
 import com.gfa.todoapp.services.AssigneeService;
 import com.gfa.todoapp.services.SubtaskService;
 import com.gfa.todoapp.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
-import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class MainController {
@@ -53,11 +51,15 @@ public class MainController {
 
     @GetMapping("/addsubtask/{id}")
     public String addSubTask(@PathVariable long id, Model model) {
-        model.addAttribute("newSubtask", true);
-        model.addAttribute("leadTask", todoService.findTodoById(id));
-        model.addAttribute("subtask", new Subtask());
-        model.addAttribute("listAssignees", assigneeService.returnAllAssignees());
-        return "main";
+        if (todoService.findTodoById(id) == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            model.addAttribute("newSubtask", true);
+            model.addAttribute("leadTask", todoService.findTodoById(id));
+            model.addAttribute("subtask", new Subtask());
+            model.addAttribute("listAssignees", assigneeService.returnAllAssignees());
+            return "main";
+        }
     }
 
     @PostMapping("/addsubtask/{id}")
@@ -158,16 +160,4 @@ public class MainController {
         todoService.reopenTask(id);
         return "redirect:/main";
     }
-
-    
-
-
-
-
-
-
-
-
-
-
 }

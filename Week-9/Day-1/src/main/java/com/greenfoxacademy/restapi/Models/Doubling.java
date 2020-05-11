@@ -1,5 +1,8 @@
 package com.greenfoxacademy.restapi.Models;
 
+import com.greenfoxacademy.restapi.Services.LogService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Doubling {
 
     private int received;
@@ -7,7 +10,6 @@ public class Doubling {
 
     public Doubling(int received) {
         this.received = received;
-        this.result = 2 * received;
     }
 
     public int getReceived() {

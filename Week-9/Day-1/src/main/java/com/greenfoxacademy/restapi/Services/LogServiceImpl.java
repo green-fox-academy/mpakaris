@@ -19,6 +19,11 @@ public class LogServiceImpl implements LogService {
     LogRepository logRepo;
 
     @Override
+    public int doubling(int a) {
+        return a*2;
+    }
+
+    @Override
     public void createNewLog(String endpoint, String data) {
         logRepo.save(new Log(endpoint, data));
     }

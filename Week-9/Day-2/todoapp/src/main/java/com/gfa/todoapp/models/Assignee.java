@@ -48,10 +48,7 @@ public class Assignee {
         this.assigneeName = assigneeName;
     }
 
-    public List<Todo> getListTodos() {
-
-        return listTodos;
-    }
+    public List<Todo> getListTodos() {return listTodos; }
 
     public void setListTodos(List<Todo> listTodos) {
         this.listTodos = listTodos;

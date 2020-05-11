@@ -9,6 +9,8 @@ import java.util.List;
 @Service
 public interface LogService {
 
+    int doubling(int a);
+
     void createNewLog(String endpoint, String data);
 
     AllLogs getAllLogs();
